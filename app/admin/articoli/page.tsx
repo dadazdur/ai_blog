@@ -13,7 +13,6 @@ type Row = {
   status: string;
   published_at: string | null;
   updated_at: string | null;
-  views: number;
   categories: { name: string } | { name: string }[] | null;
   authors: { name: string } | { name: string }[] | null;
 };
@@ -31,7 +30,7 @@ export default async function AdminArticoliPage({
 
   let query = supabase
     .from("posts")
-    .select("id, slug, title, status, published_at, updated_at, views, categories(name), authors(name)")
+    .select("id, slug, title, status, published_at, updated_at, categories(name), authors(name)")
     .order("updated_at", { ascending: false });
 
   if (stato === "draft" || stato === "published") query = query.eq("status", stato);
@@ -73,7 +72,7 @@ export default async function AdminArticoliPage({
         <table className="w-full min-w-[46rem] border-collapse text-left">
           <thead>
             <tr className="border-b border-rule">
-              {["Titolo", "Categoria", "Autore", "Stato", "Data", "Letture"].map((heading) => (
+              {["Titolo", "Categoria", "Autore", "Stato", "Data"].map((heading) => (
                 <th key={heading} className="t-label py-3 pr-4 font-medium">
                   {heading}
                 </th>
@@ -97,7 +96,6 @@ export default async function AdminArticoliPage({
                   </span>
                 </td>
                 <td className="py-3 pr-4 t-meta">{formatShortDate(post.published_at ?? post.updated_at)}</td>
-                <td className="py-3 pr-4 t-meta">{post.views}</td>
               </tr>
             ))}
           </tbody>

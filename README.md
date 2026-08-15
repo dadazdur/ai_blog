@@ -16,22 +16,29 @@ npm install && npm run dev
 Il sito parte subito su <http://localhost:3000> con i contenuti dimostrativi, anche senza database.
 Servono le credenziali Supabase solo per newsletter, area riservata e amministrazione.
 
-## Collegare Supabase
+## Stato della configurazione
 
-**1. Crea il progetto** su [supabase.com](https://supabase.com) (regione consigliata: Frankfurt, per tenere i dati nell'UE).
+Il progetto Supabase **AI Studio** (`fpiheqzelhylvblyxeoy`, regione eu-west-1) è già collegato:
 
-**2. Esegui lo schema.** Apri *SQL Editor*, incolla il contenuto di `supabase/migrations/0001_init.sql` ed esegui.
-Crea tabelle, funzioni, policy di sicurezza e il bucket privato dei file.
+- ✅ schema, funzioni, policy RLS e bucket privato applicati (`supabase/migrations/`)
+- ✅ `.env.local` compilato con URL e chiave anon
+- ✅ 4 articoli, 4 categorie, 1 autore e 4 risorse caricati nel database
+- ⬜ `SUPABASE_SERVICE_ROLE_KEY` da incollare in `.env.local` (newsletter e seed)
+- ⬜ Redirect URL da impostare su Supabase (vedi sotto)
+- ⬜ Primo account da promuovere ad amministratore
 
-**3. Compila le variabili.** Copia `.env.example` in `.env.local` e riempi i valori da *Project Settings → API*.
+### I tre passaggi che restano
 
-**4. Carica i contenuti dimostrativi** (facoltativo, ma comodo per partire):
+**1. Chiave service role.** Supabase → *Project Settings → API Keys* → `service_role` → *Reveal*.
+Incollala in `.env.local` accanto a `SUPABASE_SERVICE_ROLE_KEY=` e riavvia `npm run dev`.
+Senza questa chiave l'iscrizione alla newsletter risponde con un errore: è l'unica funzione che la richiede.
 
-```bash
-npm run db:seed
-```
+**2. Redirect URL.** Supabase → *Authentication → URL Configuration*: imposta Site URL su
+`http://localhost:3000` e aggiungi tra i Redirect URL `http://localhost:3000/auth/callback`
+(e più avanti `https://iltuodominio.it/auth/callback`). Senza questo passaggio i link di conferma
+registrazione e di recupero password non funzionano.
 
-**5. Crea il tuo account** su <http://localhost:3000/registrati>, poi promuovilo ad amministratore dall'SQL Editor:
+**3. Il tuo account admin.** Registrati su <http://localhost:3000/registrati>, poi nell'SQL Editor di Supabase:
 
 ```sql
 update public.profiles set role = 'admin' where email = 'tua@email.it';
@@ -39,8 +46,10 @@ update public.profiles set role = 'admin' where email = 'tua@email.it';
 
 Da quel momento <http://localhost:3000/admin> è accessibile.
 
-**6. Configura le email di Supabase.** In *Authentication → URL Configuration* imposta il Site URL e aggiungi
-`http://localhost:3000/auth/callback` e `https://iltuodominio.it/auth/callback` come Redirect URL.
+### Ripartire da zero su un altro progetto
+
+Esegui in ordine i file di `supabase/migrations/` nell'SQL Editor, compila `.env.local` da `.env.example`,
+poi carica i contenuti dimostrativi con `npm run db:seed` (richiede la chiave service role).
 
 ## Struttura
 

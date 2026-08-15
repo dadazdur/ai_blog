@@ -71,7 +71,7 @@ const author = demoAuthors[0];
 
 export const demoPosts: Post[] = [
   {
-    id: "p1000000-0000-4000-8000-000000000001",
+    id: "b1000000-0000-4000-8000-000000000001",
     slug: "intelligenza-artificiale-per-commercialisti-da-dove-iniziare",
     title: "Intelligenza artificiale per commercialisti: da dove iniziare davvero",
     excerpt:
@@ -184,7 +184,7 @@ Parti da **un'attività, una persona, due settimane**. Misura. Poi allarga.
 Se vuoi gli schemi già pronti, nell'[area riservata](/risorse) trovi la libreria di prompt divisa per attività di studio: sono gli stessi che uso io, con le note su dove tendono a sbagliare.`,
   },
   {
-    id: "p1000000-0000-4000-8000-000000000002",
+    id: "b1000000-0000-4000-8000-000000000002",
     slug: "prompt-per-commercialisti-esempi-pronti",
     title: "8 prompt per commercialisti che funzionano davvero (con lo schema per costruirne altri)",
     excerpt:
@@ -363,7 +363,7 @@ Due o tre correzioni mirate portano a un risultato migliore di dieci riscritture
 Nell'[area riservata](/risorse) trovi la libreria completa, divisa per attività, con le varianti per bilancio, contenzioso e consulenza del lavoro.`,
   },
   {
-    id: "p1000000-0000-4000-8000-000000000003",
+    id: "b1000000-0000-4000-8000-000000000003",
     slug: "chatgpt-dati-clienti-gdpr-studio-commercialista",
     title: "Dati dei clienti e AI: cosa puoi caricare davvero, senza farti male",
     excerpt:
@@ -486,7 +486,7 @@ Il pericolo maggiore, nella pratica, non è il fornitore che usa male i dati. È
 Quando l'uso dell'AI viene vietato senza offrire uno strumento autorizzato, non sparisce: si sposta fuori dal perimetro di controllo dello studio, su dispositivi personali, senza tracciabilità. Dare uno strumento conforme e delle regole chiare è, prima ancora che una scelta di efficienza, una misura di sicurezza.`,
   },
   {
-    id: "p1000000-0000-4000-8000-000000000004",
+    id: "b1000000-0000-4000-8000-000000000004",
     slug: "estrazione-dati-documenti-ai-studio",
     title: "Far leggere i documenti all'AI: fatture, contratti e visure senza reinserire nulla a mano",
     excerpt:
@@ -595,7 +595,7 @@ Non è la rivoluzione che raccontano ai convegni. È esattamente il tipo di guad
 
 export const demoResources: Resource[] = [
   {
-    id: "r1000000-0000-4000-8000-000000000001",
+    id: "e1000000-0000-4000-8000-000000000001",
     slug: "libreria-prompt-studio",
     title: "Libreria prompt per lo studio",
     description:
@@ -619,7 +619,7 @@ invece di ipotizzarla.`,
     created_at: "2026-07-01T07:00:00.000Z",
   },
   {
-    id: "r1000000-0000-4000-8000-000000000002",
+    id: "e1000000-0000-4000-8000-000000000002",
     slug: "policy-interna-ai-studio",
     title: "Modello di policy interna sull'uso dell'AI",
     description:
@@ -635,7 +635,7 @@ invece di ipotizzarla.`,
     created_at: "2026-07-10T07:00:00.000Z",
   },
   {
-    id: "r1000000-0000-4000-8000-000000000003",
+    id: "e1000000-0000-4000-8000-000000000003",
     slug: "checklist-conformita-ai",
     title: "Checklist di conformità: AI e dati dei clienti",
     description:
@@ -651,7 +651,7 @@ invece di ipotizzarla.`,
     created_at: "2026-07-18T07:00:00.000Z",
   },
   {
-    id: "r1000000-0000-4000-8000-000000000004",
+    id: "e1000000-0000-4000-8000-000000000004",
     slug: "foglio-estrazione-dati-contratti",
     title: "Foglio di estrazione dati da contratti",
     description:
