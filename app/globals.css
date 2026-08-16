@@ -257,6 +257,20 @@ h4 {
   font-variant-numeric: tabular-nums;
 }
 
+/* Blocco dello scorrimento col menu mobile aperto.
+   Sta nel CSS e non in uno stile inline perché la media query lo rilascia da
+   sola appena si passa a desktop: se dipendesse da un evento JavaScript, una
+   finestra allargata col menu aperto resterebbe bloccata. */
+body.menu-aperto {
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  body.menu-aperto {
+    overflow: visible;
+  }
+}
+
 /* Icona del pulsante tema: sole quando il tema attivo è scuro, luna quando è chiaro. */
 .theme-sun {
   display: none;
