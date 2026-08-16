@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ButtonLink, Container, Eyebrow, Pill } from "@/components/ui";
+import { ButtonLink, Container } from "@/components/ui";
 import { createClient } from "@/lib/supabase/server";
 import { resourceTypeLabels, type Resource } from "@/lib/types";
 import { formatBytes, formatShortDate } from "@/lib/utils";
@@ -22,9 +22,8 @@ export default async function AdminRisorsePage() {
     <Container className="py-10">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <Eyebrow>Area riservata</Eyebrow>
           <h1 className="t-h2 mt-2">Risorse</h1>
-          <p className="mt-2 max-w-xl text-[0.92rem] text-ink-soft">
+          <p className="mt-2 max-w-xl text-[0.92rem] text-ink-2">
             I file caricati qui finiscono in uno spazio privato: si scaricano solo da un account attivo, tramite un
             collegamento che scade dopo un minuto.
           </p>
@@ -39,7 +38,7 @@ export default async function AdminRisorsePage() {
           <thead>
             <tr className="border-b border-rule">
               {["Titolo", "Tipo", "File", "Stato", "Download", "Creata"].map((heading) => (
-                <th key={heading} className="t-label py-3 pr-4 font-medium">
+                <th key={heading} className="col-head py-3 pr-4 font-medium">
                   {heading}
                 </th>
               ))}
@@ -54,13 +53,13 @@ export default async function AdminRisorsePage() {
                   </Link>
                 </td>
                 <td className="py-3 pr-4">
-                  <Pill>{resourceTypeLabels[resource.type]}</Pill>
+                  <span className="meta-sm text-accent">{resourceTypeLabels[resource.type]}</span>
                 </td>
-                <td className="py-3 pr-4 text-[0.85rem] text-ink-soft">
+                <td className="py-3 pr-4 text-[0.85rem] text-ink-2">
                   {resource.file_name ? (
                     <>
                       {resource.file_name}
-                      <span className="t-meta block">{formatBytes(resource.file_size)}</span>
+                      <span className="meta block">{formatBytes(resource.file_size)}</span>
                     </>
                   ) : resource.external_url ? (
                     "link esterno"
@@ -69,12 +68,12 @@ export default async function AdminRisorsePage() {
                   )}
                 </td>
                 <td className="py-3 pr-4">
-                  <span className={`t-label ${resource.published ? "text-accent" : "text-ink-faint"}`}>
+                  <span className={`col-head ${resource.published ? "text-accent" : "text-ink-3"}`}>
                     {resource.published ? "Visibile" : "Nascosta"}
                   </span>
                 </td>
-                <td className="py-3 pr-4 t-meta">{resource.downloads}</td>
-                <td className="py-3 pr-4 t-meta">{formatShortDate(resource.created_at)}</td>
+                <td className="py-3 pr-4 meta">{resource.downloads}</td>
+                <td className="py-3 pr-4 meta">{formatShortDate(resource.created_at)}</td>
               </tr>
             ))}
           </tbody>
@@ -82,9 +81,9 @@ export default async function AdminRisorsePage() {
       </div>
 
       {!resources.length ? (
-        <p className="py-10 text-[0.95rem] text-ink-soft">
+        <p className="py-10 text-[0.95rem] text-ink-2">
           Nessuna risorsa.{" "}
-          <Link href="/admin/risorse/nuova" className="link-underline text-accent">
+          <Link href="/admin/risorse/nuova" className="link text-accent">
             Caricane una
           </Link>
           .

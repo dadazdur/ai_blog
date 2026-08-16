@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container, Eyebrow, Notice, Pill } from "@/components/ui";
+import { Container, Notice } from "@/components/ui";
 import { DownloadButton } from "@/components/download-button";
 import { getResources } from "@/lib/data";
 import { getProfile } from "@/lib/supabase/server";
@@ -20,15 +20,14 @@ export default async function AreaRiservataPage() {
     .filter((gruppo) => gruppo.items.length > 0);
 
   return (
-    <Container className="py-12 sm:py-16">
-      <Eyebrow>Area riservata</Eyebrow>
-      <h1 className="t-h1 mt-4">{nome ? `Ciao ${nome}` : "Le tue risorse"}</h1>
-      <p className="t-lead mt-4 max-w-2xl">
+    <Container className="py-12 sm:py-14">
+      <h1 className="t-h1">{nome ? `Ciao ${nome}` : "Le tue risorse"}</h1>
+      <p className="t-deck mt-4 max-w-[54ch]">
         Tutto il materiale è scaricabile senza limiti. Quando aggiorno un file lo trovi qui con la data nuova.
       </p>
 
       {!isSupabaseConfigured() ? (
-        <div className="mt-8 max-w-2xl">
+        <div className="mt-8 max-w-[54ch]">
           <Notice tone="warning" title="Stai vedendo contenuti dimostrativi">
             Le variabili Supabase non sono configurate: i download non sono attivi. Segui il README per collegare
             il database e caricare i file veri.
@@ -36,49 +35,51 @@ export default async function AreaRiservataPage() {
         </div>
       ) : null}
 
-      <div className="mt-12 flex flex-col gap-14">
-        {gruppi.map((gruppo) => (
-          <section key={gruppo.type}>
-            <h2 className="t-h3 border-b border-rule pb-3">{resourceTypeLabels[gruppo.type]}</h2>
-            <ul className="grid gap-px overflow-hidden border-x border-b border-rule bg-rule sm:grid-cols-2">
-              {gruppo.items.map((resource) => (
-                <li key={resource.id} className="flex flex-col gap-3 bg-surface p-6">
-                  <div className="flex items-center justify-between gap-3">
-                    <Pill>{resourceTypeLabels[resource.type]}</Pill>
-                    {resource.file_size ? (
-                      <span className="t-meta">{formatBytes(resource.file_size)}</span>
-                    ) : null}
-                  </div>
-
-                  <h3 className="font-display text-[1.18rem] leading-snug text-ink">
-                    <Link href={`/area-riservata/${resource.slug}`} className="link-underline">
-                      {resource.title}
-                    </Link>
-                  </h3>
-
-                  {resource.description ? (
-                    <p className="text-[0.9rem] leading-relaxed text-ink-soft">{resource.description}</p>
-                  ) : null}
-
-                  <div className="mt-auto pt-2">
-                    {resource.type === "prompt" && !resource.file_path ? (
-                      <Link href={`/area-riservata/${resource.slug}`} className="link-underline text-[0.88rem] text-accent">
-                        Apri il prompt →
+      {gruppi.length ? (
+        <div className="mt-12 flex flex-col gap-14">
+          {gruppi.map((gruppo) => (
+            <section key={gruppo.type}>
+              <h2 className="t-h3">{resourceTypeLabels[gruppo.type]}</h2>
+              <ul className="mt-5 grid gap-x-14 sm:grid-cols-2">
+                {gruppo.items.map((resource) => (
+                  <li key={resource.id} className="flex flex-col border-t border-rule py-5">
+                    <h3 className="text-[1.08rem] font-semibold leading-snug tracking-[-0.015em]">
+                      <Link href={`/area-riservata/${resource.slug}`} className="link">
+                        {resource.title}
                       </Link>
-                    ) : (
-                      <DownloadButton resourceId={resource.id} variant="outline" />
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+                    </h3>
 
-        {!gruppi.length ? (
-          <Notice tone="info">Non ci sono ancora risorse pubblicate. Torna tra qualche giorno.</Notice>
-        ) : null}
-      </div>
+                    {resource.description ? (
+                      <p className="mt-2 text-[0.93rem] leading-relaxed text-ink-2">{resource.description}</p>
+                    ) : null}
+
+                    {resource.file_size ? <p className="meta-sm mt-2">{formatBytes(resource.file_size)}</p> : null}
+
+                    <div className="mt-4 pt-1">
+                      {resource.type === "prompt" && !resource.file_path ? (
+                        <Link href={`/area-riservata/${resource.slug}`} className="ui link text-[0.88rem]">
+                          Apri il prompt
+                        </Link>
+                      ) : (
+                        <DownloadButton resourceId={resource.id} variant="outline" />
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-12 max-w-[54ch] border-t border-rule pt-8">
+          <h2 className="t-h3">Il primo materiale sta arrivando</h2>
+          <p className="mt-3 text-[1rem] leading-relaxed text-ink-2">
+            Qui troverai gli schemi di prompt divisi per attività, i modelli di documento da adattare e le
+            checklist di conformità. Pubblichiamo solo materiale che abbiamo usato davvero, quindi arriva un pezzo
+            alla volta — e tu ricevi un&apos;email ogni volta che ne esce uno.
+          </p>
+        </div>
+      )}
     </Container>
   );
 }

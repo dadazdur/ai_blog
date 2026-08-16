@@ -73,3 +73,23 @@ export function excerptFrom(markdown: string, length = 160) {
   if (plain.length <= length) return plain;
   return `${plain.slice(0, plain.lastIndexOf(" ", length))}…`;
 }
+
+/**
+ * Le prime righe vere di un articolo, in testo semplice.
+ * Servono alla prima schermata: il lettore sta già leggendo mentre decide.
+ */
+export function openingParagraphs(markdown: string, count = 2) {
+  return (markdown ?? "")
+    .split(/\n\s*\n/)
+    .map((block) => block.trim())
+    .filter((block) => block && !/^(#{1,6}\s|[-*>|]|\d+\.\s|```)/.test(block))
+    .slice(0, count)
+    .map((block) =>
+      block
+        .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+        .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+        .replace(/[*_`]/g, "")
+        .replace(/\s+/g, " ")
+        .trim(),
+    );
+}

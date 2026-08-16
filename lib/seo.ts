@@ -99,6 +99,9 @@ export function websiteSchema() {
   };
 }
 
+// `jobTitle` resta fuori dai dati strutturati: la qualifica dell'autore è una
+// decisione aperta, e un titolo professionale in JSON-LD è un'affermazione
+// leggibile dalle macchine che nessuno ha ancora confermato.
 export function personSchema(author: Author) {
   return {
     "@context": "https://schema.org",
@@ -106,7 +109,6 @@ export function personSchema(author: Author) {
     "@id": `${siteConfig.url}/autori/${author.slug}#person`,
     name: author.name,
     url: absoluteUrl(`/autori/${author.slug}`),
-    jobTitle: author.role_title ?? undefined,
     description: author.bio ?? undefined,
     image: author.avatar_url ?? undefined,
     sameAs: author.linkedin_url ? [author.linkedin_url] : undefined,
@@ -143,7 +145,6 @@ export function articleSchema(post: Post, wordCount?: number) {
           "@id": `${siteConfig.url}/autori/${post.author.slug}#person`,
           name: post.author.name,
           url: absoluteUrl(`/autori/${post.author.slug}`),
-          jobTitle: post.author.role_title ?? undefined,
         }
       : { "@id": ORGANIZATION_ID },
     publisher: { "@id": ORGANIZATION_ID },

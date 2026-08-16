@@ -90,7 +90,7 @@ export function PostEditor({
               setTitle(event.target.value);
               if (!slugTouched) setSlug(slugify(event.target.value));
             }}
-            className={cn(inputClass, "font-display text-xl")}
+            className={cn(inputClass, "text-xl")}
           />
         </Field>
 
@@ -120,11 +120,11 @@ export function PostEditor({
 
         <div>
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rule pb-2">
-            <p className="t-label">Contenuto (Markdown)</p>
+            <p className="ui text-[0.82rem] font-medium text-ink">Contenuto (Markdown)</p>
             <button
               type="button"
               onClick={() => setPreview((value) => !value)}
-              className="t-label text-accent hover:underline"
+              className="ui text-[0.82rem] font-medium text-accent transition-colors hover:text-ink"
             >
               {preview ? "Torna a scrivere" : "Anteprima"}
             </button>
@@ -138,7 +138,7 @@ export function PostEditor({
                     key={item.label}
                     type="button"
                     onClick={() => insert(item.before, item.after)}
-                    className="rounded border border-rule px-2 py-1 font-mono text-[0.7rem] text-ink-soft transition-colors hover:border-rule-strong hover:text-ink"
+                    className="rounded border border-rule px-2 py-1 font-mono text-[0.7rem] text-ink-2 transition-colors hover:border-rule-strong hover:text-ink"
                   >
                     {item.label}
                   </button>
@@ -240,7 +240,7 @@ export function PostEditor({
         </div>
 
         <div className="flex flex-col gap-4 rounded-md border border-rule bg-surface p-4">
-          <p className="t-label">Ricerca</p>
+          <p className="ui text-[0.82rem] font-medium text-ink">Ricerca</p>
 
           <Field label="Keyword principale" htmlFor="focus_keyword">
             <input
@@ -287,7 +287,7 @@ export function PostEditor({
             <input id="canonical_url" name="canonical_url" defaultValue={post?.canonical_url ?? ""} className={inputClass} />
           </Field>
 
-          <label className="flex items-center gap-2 text-[0.85rem] text-ink-soft">
+          <label className="flex items-center gap-2 text-[0.85rem] text-ink-2">
             <input
               type="checkbox"
               name="noindex"
@@ -310,8 +310,8 @@ export function PostEditor({
 
         {post ? (
           <div className="rounded-md border border-danger/30 p-4">
-            <p className="t-label text-danger">Zona pericolosa</p>
-            <p className="mt-2 text-[0.82rem] leading-snug text-ink-soft">
+            <p className="ui text-[0.85rem] font-semibold text-danger">Zona pericolosa</p>
+            <p className="mt-2 text-[0.82rem] leading-snug text-ink-2">
               L&apos;eliminazione è definitiva e rimuove anche l&apos;URL dalla sitemap.
             </p>
           </div>
@@ -326,7 +326,7 @@ export function DeletePostForm({ id, slug }: { id: string; slug: string }) {
     <form action={deletePost}>
       <input type="hidden" name="id" value={id} />
       <input type="hidden" name="slug" value={slug} />
-      <button type="submit" className="t-label text-danger hover:underline">
+      <button type="submit" className="ui text-[0.82rem] font-medium text-danger transition-colors hover:text-ink">
         Elimina definitivamente
       </button>
     </form>

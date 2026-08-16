@@ -98,8 +98,8 @@ export function SeoCheck({
   return (
     <div className="rounded-md border border-rule bg-surface">
       <div className="flex items-center justify-between border-b border-rule px-4 py-2.5">
-        <p className="t-label">Controlli SEO</p>
-        <span className="font-mono text-[0.75rem] text-ink-soft num">
+        <p className="ui text-[0.82rem] font-medium text-ink">Controlli SEO</p>
+        <span className="font-mono text-[0.75rem] text-ink-2 num">
           {passed}/{checks.length}
         </span>
       </div>
@@ -114,11 +114,11 @@ export function SeoCheck({
                   check.ok ? "bg-accent" : "bg-ink-faint",
                 )}
               />
-              <span className={cn("text-[0.83rem] leading-snug", check.ok ? "text-ink-soft" : "text-ink")}>
+              <span className={cn("text-[0.83rem] leading-snug", check.ok ? "text-ink-2" : "text-ink")}>
                 {check.label}
               </span>
             </div>
-            {!check.ok ? <p className="mt-1 pl-4 text-[0.76rem] leading-snug text-ink-faint">{check.hint}</p> : null}
+            {!check.ok ? <p className="mt-1 pl-4 text-[0.76rem] leading-snug text-ink-3">{check.hint}</p> : null}
           </li>
         ))}
       </ul>

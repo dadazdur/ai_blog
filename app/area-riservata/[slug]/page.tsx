@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Container, Eyebrow, Pill } from "@/components/ui";
+import { Column } from "@/components/ui";
 import { CopyPromptButton, DownloadButton } from "@/components/download-button";
 import { getResourceBySlug } from "@/lib/data";
 import { resourceTypeLabels } from "@/lib/types";
@@ -14,27 +14,26 @@ export default async function RisorsaPage({ params }: { params: Promise<{ slug: 
   if (!resource) notFound();
 
   return (
-    <Container className="max-w-3xl py-12 sm:py-16">
-      <nav aria-label="Percorso" className="t-meta">
+    <Column className="py-12 sm:py-16">
+      <nav aria-label="Percorso" className="meta">
         <Link href="/area-riservata" className="hover:text-ink">
           Risorse
         </Link>{" "}
         / {resource.title}
       </nav>
 
-      <div className="mt-6 flex flex-wrap items-center gap-3">
-        <Pill>{resourceTypeLabels[resource.type]}</Pill>
-        <span className="t-meta">Aggiornata il {formatDate(resource.created_at)}</span>
-        {resource.file_size ? <span className="t-meta">{formatBytes(resource.file_size)}</span> : null}
-      </div>
+      <h1 className="t-h1 mt-5">{resource.title}</h1>
+      {resource.description ? <p className="t-deck mt-4">{resource.description}</p> : null}
 
-      <h1 className="t-h1 mt-4">{resource.title}</h1>
-      {resource.description ? <p className="t-lead mt-4">{resource.description}</p> : null}
+      <div className="ui mt-6 flex flex-wrap items-center gap-x-4 gap-y-1.5 border-y border-rule py-3 text-[0.85rem]">
+        <span className="font-medium text-ink">{resourceTypeLabels[resource.type]}</span>
+        <span className="text-ink-2 num">Aggiornata il {formatDate(resource.created_at)}</span>
+        {resource.file_size ? <span className="text-ink-3 num">{formatBytes(resource.file_size)}</span> : null}
+      </div>
 
       {resource.prompt_text ? (
         <section className="mt-10">
-          <Eyebrow>Il testo del prompt</Eyebrow>
-          <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-md border border-rule bg-surface-sunken px-4 py-4 font-mono text-[0.82rem] leading-[1.7] text-ink">
+          <pre className="mt-3 overflow-x-auto whitespace-pre-wrap rounded-md border border-rule bg-sunken px-4 py-4 font-mono text-[0.82rem] leading-[1.7] text-ink">
             {resource.prompt_text}
           </pre>
           <div className="mt-4">
@@ -45,8 +44,8 @@ export default async function RisorsaPage({ params }: { params: Promise<{ slug: 
 
       {resource.file_path || resource.external_url ? (
         <section className="mt-10 rounded-lg border border-rule bg-surface p-6">
-          <p className="t-label">{resource.external_url && !resource.file_path ? "Guarda" : "Scarica"}</p>
-          <p className="mt-2 text-[0.92rem] text-ink-soft">
+          <p className="ui text-[0.82rem] font-medium text-ink">{resource.external_url && !resource.file_path ? "Guarda" : "Scarica"}</p>
+          <p className="mt-2 text-[0.92rem] text-ink-2">
             {resource.file_name ?? "Contenuto riservato agli iscritti"}
           </p>
           <div className="mt-4">
@@ -58,9 +57,9 @@ export default async function RisorsaPage({ params }: { params: Promise<{ slug: 
         </section>
       ) : null}
 
-      <Link href="/area-riservata" className="link-underline mt-12 inline-block text-[0.9rem] text-accent">
+      <Link href="/area-riservata" className="link mt-12 inline-block text-[0.9rem] text-accent">
         ← Tutte le risorse
       </Link>
-    </Container>
+    </Column>
   );
 }

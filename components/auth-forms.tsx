@@ -57,11 +57,11 @@ export function SignInForm({ redirectTo }: { redirectTo?: string }) {
       <Feedback state={state} />
       <Submit label="Accedi" />
 
-      <div className="flex flex-wrap justify-between gap-2 text-[0.85rem] text-ink-soft">
-        <Link href="/recupera-password" className="link-underline">
+      <div className="flex flex-wrap justify-between gap-2 text-[0.85rem] text-ink-2">
+        <Link href="/recupera-password" className="link">
           Password dimenticata
         </Link>
-        <Link href="/registrati" className="link-underline">
+        <Link href="/registrati" className="link">
           Crea un account
         </Link>
       </div>
@@ -98,11 +98,11 @@ export function SignUpForm() {
         />
       </Field>
 
-      <label className="flex items-start gap-2.5 text-[0.82rem] leading-snug text-ink-soft">
+      <label className="flex items-start gap-2.5 text-[0.82rem] leading-snug text-ink-2">
         <input type="checkbox" name="consenso" required className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--accent)]" />
         <span>
           Ho letto la{" "}
-          <Link href="/privacy" className="link-underline">
+          <Link href="/privacy" className="link">
             privacy policy
           </Link>{" "}
           e acconsento al trattamento dei dati per l&apos;accesso all&apos;area riservata.
@@ -112,9 +112,9 @@ export function SignUpForm() {
       <Feedback state={state} />
       <Submit label="Crea account" />
 
-      <p className="text-[0.85rem] text-ink-soft">
+      <p className="text-[0.85rem] text-ink-2">
         Hai già un account?{" "}
-        <Link href="/accedi" className="link-underline">
+        <Link href="/accedi" className="link">
           Accedi
         </Link>
       </p>
@@ -132,8 +132,8 @@ export function ResetRequestForm() {
       </Field>
       <Feedback state={state} />
       <Submit label="Inviami il link" />
-      <p className="text-[0.85rem] text-ink-soft">
-        <Link href="/accedi" className="link-underline">
+      <p className="text-[0.85rem] text-ink-2">
+        <Link href="/accedi" className="link">
           Torna all&apos;accesso
         </Link>
       </p>

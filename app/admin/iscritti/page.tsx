@@ -1,4 +1,4 @@
-import { Container, Eyebrow, buttonClass } from "@/components/ui";
+import { Container, buttonClass } from "@/components/ui";
 import { confirmSubscriber, removeSubscriber } from "@/app/actions/admin";
 import { createClient } from "@/lib/supabase/server";
 import type { Profile, Subscriber } from "@/lib/types";
@@ -28,7 +28,6 @@ export default async function AdminIscrittiPage() {
 
   return (
     <Container className="py-10">
-      <Eyebrow>Pubblico</Eyebrow>
       <h1 className="t-h2 mt-2">Iscritti</h1>
 
       <dl className="mt-6 grid gap-px overflow-hidden border border-rule bg-rule sm:grid-cols-3">
@@ -38,8 +37,8 @@ export default async function AdminIscrittiPage() {
           { label: "Account area riservata", value: profiles.length },
         ].map((stat) => (
           <div key={stat.label} className="bg-surface p-5">
-            <dt className="t-label">{stat.label}</dt>
-            <dd className="mt-2 font-display text-3xl leading-none text-ink num">{stat.value}</dd>
+            <dt className="ui text-[0.82rem] font-medium text-ink">{stat.label}</dt>
+            <dd className="mt-2 text-3xl leading-none text-ink num">{stat.value}</dd>
           </div>
         ))}
       </dl>
@@ -58,7 +57,7 @@ export default async function AdminIscrittiPage() {
             <thead>
               <tr className="border-b border-rule">
                 {["Email", "Stato", "Provenienza", "Iscritto il", "Azioni"].map((heading) => (
-                  <th key={heading} className="t-label py-3 pr-4 font-medium">
+                  <th key={heading} className="col-head py-3 pr-4 font-medium">
                     {heading}
                   </th>
                 ))}
@@ -71,32 +70,32 @@ export default async function AdminIscrittiPage() {
                   <td className="py-3 pr-4">
                     <span
                       className={cn(
-                        "t-label",
+                        "col-head",
                         subscriber.status === "confirmed"
                           ? "text-accent"
                           : subscriber.status === "pending"
                             ? "text-warning"
-                            : "text-ink-faint",
+                            : "text-ink-3",
                       )}
                     >
                       {statusLabels[subscriber.status]}
                     </span>
                   </td>
-                  <td className="py-3 pr-4 t-meta">{subscriber.source ?? "—"}</td>
-                  <td className="py-3 pr-4 t-meta">{formatShortDate(subscriber.created_at)}</td>
+                  <td className="py-3 pr-4 meta">{subscriber.source ?? "—"}</td>
+                  <td className="py-3 pr-4 meta">{formatShortDate(subscriber.created_at)}</td>
                   <td className="py-3 pr-4">
                     <div className="flex items-center gap-4">
                       {subscriber.status === "pending" ? (
                         <form action={confirmSubscriber}>
                           <input type="hidden" name="id" value={subscriber.id} />
-                          <button type="submit" className="t-label text-accent hover:underline">
+                          <button type="submit" className="ui text-[0.82rem] font-medium text-accent transition-colors hover:text-ink">
                             Conferma
                           </button>
                         </form>
                       ) : null}
                       <form action={removeSubscriber}>
                         <input type="hidden" name="id" value={subscriber.id} />
-                        <button type="submit" className="t-label text-danger hover:underline">
+                        <button type="submit" className="ui text-[0.82rem] font-medium text-danger transition-colors hover:text-ink">
                           Elimina
                         </button>
                       </form>
@@ -108,7 +107,7 @@ export default async function AdminIscrittiPage() {
           </table>
         </div>
 
-        {!subscribers.length ? <p className="py-8 text-[0.95rem] text-ink-soft">Nessun iscritto per ora.</p> : null}
+        {!subscribers.length ? <p className="py-8 text-[0.95rem] text-ink-2">Nessun iscritto per ora.</p> : null}
       </section>
 
       {/* --------------------------------------------------------------- Account */}
@@ -125,7 +124,7 @@ export default async function AdminIscrittiPage() {
             <thead>
               <tr className="border-b border-rule">
                 {["Nome", "Email", "Studio", "Ruolo", "Registrato il"].map((heading) => (
-                  <th key={heading} className="t-label py-3 pr-4 font-medium">
+                  <th key={heading} className="col-head py-3 pr-4 font-medium">
                     {heading}
                   </th>
                 ))}
@@ -135,21 +134,21 @@ export default async function AdminIscrittiPage() {
               {profiles.map((profile) => (
                 <tr key={profile.id} className="border-b border-rule">
                   <td className="py-3 pr-4 text-[0.9rem] text-ink">{profile.full_name ?? "—"}</td>
-                  <td className="py-3 pr-4 text-[0.9rem] text-ink-soft">{profile.email}</td>
-                  <td className="py-3 pr-4 text-[0.9rem] text-ink-soft">{profile.studio ?? "—"}</td>
+                  <td className="py-3 pr-4 text-[0.9rem] text-ink-2">{profile.email}</td>
+                  <td className="py-3 pr-4 text-[0.9rem] text-ink-2">{profile.studio ?? "—"}</td>
                   <td className="py-3 pr-4">
-                    <span className={cn("t-label", profile.role === "admin" ? "text-accent" : "text-ink-faint")}>
+                    <span className={cn("col-head", profile.role === "admin" ? "text-accent" : "text-ink-3")}>
                       {profile.role === "admin" ? "Admin" : "Utente"}
                     </span>
                   </td>
-                  <td className="py-3 pr-4 t-meta">{formatShortDate(profile.created_at)}</td>
+                  <td className="py-3 pr-4 meta">{formatShortDate(profile.created_at)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        {!profiles.length ? <p className="py-8 text-[0.95rem] text-ink-soft">Nessun account registrato.</p> : null}
+        {!profiles.length ? <p className="py-8 text-[0.95rem] text-ink-2">Nessun account registrato.</p> : null}
       </section>
     </Container>
   );

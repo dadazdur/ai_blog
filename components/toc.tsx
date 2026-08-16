@@ -21,7 +21,7 @@ export function Toc({ items }: { items: TocItem[] }) {
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
         if (visible[0]) setActive(visible[0].target.id);
       },
-      { rootMargin: "-72px 0px -70% 0px", threshold: 0 },
+      { rootMargin: "-64px 0px -72% 0px", threshold: 0 },
     );
 
     headings.forEach((heading) => observer.observe(heading));
@@ -31,17 +31,20 @@ export function Toc({ items }: { items: TocItem[] }) {
   if (items.length < 3) return null;
 
   return (
-    <nav aria-label="Indice dell'articolo" className="hidden lg:block">
-      <div className="sticky top-24">
-        <p className="t-label border-b border-rule pb-2">In questo articolo</p>
-        <ul className="mt-3 flex flex-col gap-1.5">
+    <nav aria-label="Indice dell'articolo" className="hidden xl:block">
+      <div className="sticky top-20">
+        <p className="ui text-[0.82rem] font-semibold text-ink">In questo articolo</p>
+        <ul className="ui mt-3 flex flex-col border-l border-rule">
           {items.map((item) => (
-            <li key={item.id} className={item.level === 3 ? "pl-3" : undefined}>
+            <li key={item.id}>
               <a
                 href={`#${item.id}`}
                 className={cn(
-                  "block text-[0.83rem] leading-snug transition-colors",
-                  active === item.id ? "text-accent" : "text-ink-faint hover:text-ink",
+                  "-ml-px block border-l py-1.5 pl-3 text-[0.83rem] leading-snug transition-colors",
+                  item.level === 3 && "pl-6",
+                  active === item.id
+                    ? "border-accent text-ink"
+                    : "border-transparent text-ink-3 hover:text-ink-2",
                 )}
               >
                 {item.text}

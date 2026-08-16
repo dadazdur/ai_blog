@@ -1,11 +1,11 @@
-import { ButtonLink, Container, Eyebrow } from "@/components/ui";
+import { ButtonLink, Column } from "@/components/ui";
 
 export default function NotFound() {
   return (
-    <Container className="flex min-h-[60vh] max-w-xl flex-col justify-center py-20">
-      <Eyebrow>Errore 404</Eyebrow>
-      <h1 className="t-h1 mt-4">Questa pagina non esiste</h1>
-      <p className="t-lead mt-4">
+    <Column className="flex min-h-[58vh] flex-col justify-center py-16">
+      <p className="meta">Errore 404</p>
+      <h1 className="t-h1 mt-3">Questa pagina non esiste</h1>
+      <p className="t-deck mt-4 max-w-[48ch]">
         Il link potrebbe essere vecchio o contenere un refuso. Dal blog trovi tutto quello che è stato pubblicato.
       </p>
       <div className="mt-8 flex flex-wrap gap-3">
@@ -14,6 +14,6 @@ export default function NotFound() {
           Torna alla home
         </ButtonLink>
       </div>
-    </Container>
+    </Column>
   );
 }

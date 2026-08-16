@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container, Eyebrow, ButtonLink } from "@/components/ui";
+import { Container, ButtonLink } from "@/components/ui";
 import { createClient } from "@/lib/supabase/server";
 import { formatShortDate } from "@/lib/utils";
 
@@ -36,7 +36,6 @@ export default async function AdminHomePage() {
     <Container className="py-10">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <Eyebrow>Amministrazione</Eyebrow>
           <h1 className="t-h2 mt-2">Riepilogo</h1>
         </div>
         <ButtonLink href="/admin/articoli/nuovo" size="sm">
@@ -46,9 +45,9 @@ export default async function AdminHomePage() {
 
       <dl className="mt-8 grid gap-px overflow-hidden border border-rule bg-rule sm:grid-cols-3">
         {stats.map((stat) => (
-          <Link key={stat.label} href={stat.href} className="bg-surface p-5 transition-colors hover:bg-surface-sunken">
-            <dt className="t-label">{stat.label}</dt>
-            <dd className="mt-2 font-display text-4xl leading-none text-ink num">{stat.value}</dd>
+          <Link key={stat.label} href={stat.href} className="bg-surface p-5 transition-colors hover:bg-sunken">
+            <dt className="ui text-[0.82rem] font-medium text-ink">{stat.label}</dt>
+            <dd className="mt-2 text-4xl leading-none text-ink num">{stat.value}</dd>
           </Link>
         ))}
       </dl>
@@ -62,9 +61,9 @@ export default async function AdminHomePage() {
                 {post.title}
               </Link>
               <span className="flex shrink-0 items-center gap-3">
-                <span className="t-meta">{formatShortDate(post.updated_at)}</span>
+                <span className="meta">{formatShortDate(post.updated_at)}</span>
                 <span
-                  className={`t-label ${post.status === "published" ? "text-accent" : "text-ink-faint"}`}
+                  className={`col-head ${post.status === "published" ? "text-accent" : "text-ink-3"}`}
                 >
                   {post.status === "published" ? "Pubblicato" : "Bozza"}
                 </span>
@@ -72,9 +71,9 @@ export default async function AdminHomePage() {
             </li>
           ))}
           {!latest.data?.length ? (
-            <li className="py-6 text-[0.95rem] text-ink-soft">
+            <li className="py-6 text-[0.95rem] text-ink-2">
               Nessun articolo ancora.{" "}
-              <Link href="/admin/articoli/nuovo" className="link-underline text-accent">
+              <Link href="/admin/articoli/nuovo" className="link text-accent">
                 Scrivi il primo
               </Link>
               .

@@ -5,8 +5,8 @@ export const revalidate = 86400;
 
 /**
  * Immagine social generata al volo: /api/og?title=…&kicker=…&meta=…
- * Nessuna immagine da produrre a mano per ogni articolo, e la card resta
- * coerente con l'identità del sito su LinkedIn, WhatsApp e X.
+ * Stessa carta, stesso inchiostro e stesso accento del sito, così la
+ * condivisione su LinkedIn o WhatsApp resta riconoscibile.
  */
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -23,40 +23,29 @@ export async function GET(request: Request) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#f3f5f1",
-          padding: "64px 72px",
-          fontFamily: "sans-serif",
-          borderTop: "14px solid #0a6b4e",
+          background: "#f5f5f3",
+          padding: "60px 72px",
+          fontFamily: "serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", fontSize: 28, color: "#14211c", letterSpacing: "-0.02em" }}>
-            <span style={{ fontWeight: 600 }}>Studio</span>
-            <span style={{ color: "#0a6b4e", fontStyle: "italic", marginLeft: 10 }}>Aumentato</span>
+          <div style={{ display: "flex", fontSize: 27, color: "#161514", letterSpacing: "-0.02em", fontWeight: 600 }}>
+            Studio Aumentato
           </div>
           {kicker ? (
-            <div
-              style={{
-                display: "flex",
-                fontSize: 18,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "#56655c",
-              }}
-            >
-              {kicker}
-            </div>
+            <div style={{ display: "flex", fontSize: 21, color: "#7b1e2e" }}>{kicker}</div>
           ) : null}
         </div>
 
         <div
           style={{
             display: "flex",
-            fontSize: title.length > 70 ? 58 : 70,
-            lineHeight: 1.1,
-            color: "#14211c",
-            letterSpacing: "-0.03em",
-            maxWidth: 960,
+            fontSize: title.length > 75 ? 56 : 68,
+            lineHeight: 1.08,
+            color: "#161514",
+            letterSpacing: "-0.032em",
+            fontWeight: 600,
+            maxWidth: 950,
           }}
         >
           {title}
@@ -67,10 +56,10 @@ export async function GET(request: Request) {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            borderTop: "1px solid #c3ccbe",
-            paddingTop: 24,
-            fontSize: 22,
-            color: "#56655c",
+            borderTop: "1px solid #c9c7c1",
+            paddingTop: 22,
+            fontSize: 21,
+            color: "#55534e",
           }}
         >
           <span>{meta ?? "Intelligenza artificiale per commercialisti"}</span>

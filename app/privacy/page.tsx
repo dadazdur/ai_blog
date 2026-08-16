@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Container, Eyebrow, Notice } from "@/components/ui";
+import { Column, Notice } from "@/components/ui";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
@@ -11,10 +11,9 @@ export const metadata: Metadata = buildMetadata({
 
 export default function PrivacyPage() {
   return (
-    <Container className="max-w-3xl py-14">
-      <Eyebrow>Informativa</Eyebrow>
-      <h1 className="t-h1 mt-4">Privacy policy</h1>
-      <p className="t-meta mt-3">Ultimo aggiornamento: agosto 2026</p>
+    <Column className="py-12 sm:py-16">
+      <h1 className="t-h1">Privacy policy</h1>
+      <p className="meta mt-3">Ultimo aggiornamento: agosto 2026</p>
 
       <div className="mt-8">
         <Notice tone="warning" title="Da completare prima della pubblicazione">
@@ -116,6 +115,6 @@ export default function PrivacyPage() {
           dati amministrativi è limitato ai soli account autorizzati.
         </p>
       </div>
-    </Container>
+    </Column>
   );
 }

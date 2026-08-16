@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Container } from "@/components/ui";
-import { Wordmark } from "@/components/site-header";
 import { siteConfig } from "@/lib/site";
 
 const columns = [
@@ -8,7 +7,7 @@ const columns = [
     title: "Contenuti",
     links: [
       { label: "Tutti gli articoli", href: "/blog" },
-      { label: "Risorse scaricabili", href: "/risorse" },
+      { label: "Risorse", href: "/risorse" },
       { label: "Feed RSS", href: "/feed.xml" },
     ],
   },
@@ -31,25 +30,23 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-rule bg-surface">
-      <Container className="grid gap-10 py-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
+    <footer className="mt-24 border-t border-rule">
+      <Container className="grid gap-x-8 gap-y-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.6fr_repeat(3,1fr)]">
         <div className="max-w-xs">
-          <p className="font-display text-[1.35rem] leading-none text-ink">
-            <Wordmark />
-          </p>
-          <p className="mt-3 text-[0.9rem] leading-relaxed text-ink-soft">
-            Formazione pratica sull&apos;intelligenza artificiale per commercialisti, revisori e consulenti del
-            lavoro. Niente hype: solo quello che funziona in studio.
+          <p className="text-[1.0625rem] font-semibold tracking-[-0.02em] text-ink">{siteConfig.name}</p>
+          <p className="mt-2.5 text-[0.92rem] leading-relaxed text-ink-2">
+            Guide pratiche sull&apos;intelligenza artificiale per chi lavora in uno studio. Niente hype: quello che
+            funziona, e dove il modello sbaglia.
           </p>
         </div>
 
         {columns.map((column) => (
           <nav key={column.title} aria-label={column.title}>
-            <p className="t-label mb-3">{column.title}</p>
-            <ul className="flex flex-col gap-2">
+            <p className="ui text-[0.82rem] font-semibold text-ink">{column.title}</p>
+            <ul className="ui mt-3 flex flex-col gap-2">
               {column.links.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-[0.9rem] text-ink-soft transition-colors hover:text-ink">
+                  <Link href={link.href} className="text-[0.88rem] text-ink-2 transition-colors hover:text-accent">
                     {link.label}
                   </Link>
                 </li>
@@ -60,11 +57,11 @@ export function SiteFooter() {
       </Container>
 
       <div className="border-t border-rule">
-        <Container className="flex flex-col gap-2 py-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="t-meta">
+        <Container className="flex flex-col gap-1.5 py-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="meta-sm">
             © {new Date().getFullYear()} {siteConfig.name}
           </p>
-          <p className="t-meta">
+          <p className="meta-sm">
             I contenuti hanno finalità informativa e non sostituiscono la consulenza professionale.
           </p>
         </Container>

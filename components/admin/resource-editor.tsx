@@ -119,11 +119,11 @@ export function ResourceEditor({ resource }: { resource: Resource | null }) {
           id="file"
           name="file"
           type="file"
-          className="block w-full text-[0.85rem] text-ink-soft file:mr-3 file:rounded-full file:border file:border-rule file:bg-surface file:px-4 file:py-2 file:text-[0.8rem] file:text-ink hover:file:border-rule-strong"
+          className="block w-full text-[0.85rem] text-ink-2 file:mr-3 file:rounded-full file:border file:border-rule file:bg-surface file:px-4 file:py-2 file:text-[0.8rem] file:text-ink hover:file:border-rule-strong"
         />
       </Field>
 
-      <label className="flex items-center gap-2 text-[0.9rem] text-ink-soft">
+      <label className="flex items-center gap-2 text-[0.9rem] text-ink-2">
         <input
           type="checkbox"
           name="published"
@@ -157,7 +157,7 @@ export function DeleteResourceForm({ id, filePath }: { id: string; filePath: str
     <form action={deleteResource}>
       <input type="hidden" name="id" value={id} />
       <input type="hidden" name="file_path" value={filePath ?? ""} />
-      <button type="submit" className="t-label text-danger hover:underline">
+      <button type="submit" className="ui text-[0.82rem] font-medium text-danger transition-colors hover:text-ink">
         Elimina risorsa
       </button>
     </form>

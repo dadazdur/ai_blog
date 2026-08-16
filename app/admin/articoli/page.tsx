@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ButtonLink, Container, Eyebrow } from "@/components/ui";
+import { ButtonLink, Container } from "@/components/ui";
 import { createClient } from "@/lib/supabase/server";
 import { formatShortDate } from "@/lib/utils";
 import { cn } from "@/lib/utils";
@@ -48,7 +48,6 @@ export default async function AdminArticoliPage({
     <Container className="py-10">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <Eyebrow>Contenuti</Eyebrow>
           <h1 className="t-h2 mt-2">Articoli</h1>
         </div>
         <ButtonLink href="/admin/articoli/nuovo" size="sm">
@@ -61,7 +60,7 @@ export default async function AdminArticoliPage({
           <Link
             key={filter.label}
             href={filter.value ? `/admin/articoli?stato=${filter.value}` : "/admin/articoli"}
-            className={cn("t-label", stato === filter.value ? "text-accent" : "hover:text-ink")}
+            className={cn("ui text-[0.85rem] transition-colors", stato === filter.value ? "font-semibold text-accent" : "text-ink-2 hover:text-ink")}
           >
             {filter.label}
           </Link>
@@ -73,7 +72,7 @@ export default async function AdminArticoliPage({
           <thead>
             <tr className="border-b border-rule">
               {["Titolo", "Categoria", "Autore", "Stato", "Data"].map((heading) => (
-                <th key={heading} className="t-label py-3 pr-4 font-medium">
+                <th key={heading} className="col-head py-3 pr-4 font-medium">
                   {heading}
                 </th>
               ))}
@@ -86,16 +85,16 @@ export default async function AdminArticoliPage({
                   <Link href={`/admin/articoli/${post.id}`} className="text-[0.95rem] text-ink hover:text-accent">
                     {post.title}
                   </Link>
-                  <p className="mt-0.5 font-mono text-[0.72rem] text-ink-faint">/blog/{post.slug}</p>
+                  <p className="mt-0.5 font-mono text-[0.72rem] text-ink-3">/blog/{post.slug}</p>
                 </td>
-                <td className="py-3 pr-4 text-[0.88rem] text-ink-soft">{first(post.categories)?.name ?? "—"}</td>
-                <td className="py-3 pr-4 text-[0.88rem] text-ink-soft">{first(post.authors)?.name ?? "—"}</td>
+                <td className="py-3 pr-4 text-[0.88rem] text-ink-2">{first(post.categories)?.name ?? "—"}</td>
+                <td className="py-3 pr-4 text-[0.88rem] text-ink-2">{first(post.authors)?.name ?? "—"}</td>
                 <td className="py-3 pr-4">
-                  <span className={cn("t-label", post.status === "published" ? "text-accent" : "text-ink-faint")}>
+                  <span className={cn("col-head", post.status === "published" ? "text-accent" : "text-ink-3")}>
                     {post.status === "published" ? "Pubblicato" : "Bozza"}
                   </span>
                 </td>
-                <td className="py-3 pr-4 t-meta">{formatShortDate(post.published_at ?? post.updated_at)}</td>
+                <td className="py-3 pr-4 meta">{formatShortDate(post.published_at ?? post.updated_at)}</td>
               </tr>
             ))}
           </tbody>
@@ -103,9 +102,9 @@ export default async function AdminArticoliPage({
       </div>
 
       {!posts.length ? (
-        <p className="py-10 text-[0.95rem] text-ink-soft">
+        <p className="py-10 text-[0.95rem] text-ink-2">
           Nessun articolo.{" "}
-          <Link href="/admin/articoli/nuovo" className="link-underline text-accent">
+          <Link href="/admin/articoli/nuovo" className="link text-accent">
             Scrivi il primo
           </Link>
           .

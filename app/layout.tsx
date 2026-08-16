@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
+import { Archivo, Chivo_Mono, Literata } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
@@ -7,27 +7,36 @@ import { organizationSchema, websiteSchema } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const newsreader = Newsreader({
+const literata = Literata({
   subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-newsreader",
+  variable: "--font-literata",
 });
 
-const plexSans = IBM_Plex_Sans({
+const archivo = Archivo({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-plex-sans",
+  variable: "--font-archivo",
 });
 
-const plexMono = IBM_Plex_Mono({
+const chivoMono = Chivo_Mono({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500"],
   display: "swap",
-  variable: "--font-plex-mono",
+  variable: "--font-chivo-mono",
 });
+
+const DIRECTION_CONTRACT = `<!--
+THESIS: la pubblicazione professionale della categoria, eseguita meglio di chiunque la spedisca; rifiuta l'hero con griglia di card che ogni blog di settore monta per default.
+OWN-WORLD: carta neutra fredda, inchiostro quasi nero, un solo accento oxblood che possiede intere regioni. Literata per titoli e testo, Archivo per i controlli, Chivo Mono solo dove c'e' testo-macchina. Filetti da 1px, nessuna card, nessuna ombra decorativa, nessun occhiello sopra i titoli.
+STORY: capisce in tre secondi di cosa si parla e per chi, legge un pezzo vero fino in fondo, si iscrive.
+FIRST VIEWPORT: testata sottile su un filetto; sotto, l'ultimo articolo a piena larghezza come testo (titolo Literata grande, sommario, riga di firma, prime righe reali) e la colonna di iscrizione a destra. Nessun blocco promozionale sopra il contenuto.
+FORM: standard di categoria, la porta di uscita, scelta dall'utente dopo due tiri; metro di finitura Il Post / Stratechery / Every; seed 45ef1edb.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+-->`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -37,7 +46,6 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  authors: [{ name: siteConfig.name, url: siteConfig.url }],
   generator: "Next.js",
   keywords: [
     "intelligenza artificiale commercialisti",
@@ -45,7 +53,6 @@ export const metadata: Metadata = {
     "AI studio commercialista",
     "prompt commercialisti",
     "automazione studio contabile",
-    "ChatGPT commercialisti",
   ],
   alternates: {
     canonical: "/",
@@ -76,24 +83,30 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f3f5f1" },
-    { media: "(prefers-color-scheme: dark)", color: "#0c1512" },
+    { media: "(prefers-color-scheme: light)", color: "#f5f5f3" },
+    { media: "(prefers-color-scheme: dark)", color: "#131211" },
   ],
 };
 
-/** Applica il tema salvato prima del primo paint, per evitare il lampo di colore. */
 const themeScript = `(function(){try{var t=localStorage.getItem("sa-theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t)}}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Le variabili dei font vanno su <html>: `--stack-*` è dichiarata su :root e le
+  // referenzia, e una var() non risolta lì invalida la dichiarazione per tutti.
   return (
-    <html lang={siteConfig.lang} suppressHydrationWarning>
+    <html
+      lang={siteConfig.lang}
+      className={`${literata.variable} ${archivo.variable} ${chivoMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable} min-h-dvh flex flex-col`}>
+      <body className="flex min-h-dvh flex-col">
+        <div hidden dangerouslySetInnerHTML={{ __html: DIRECTION_CONTRACT }} />
         <a
           href="#contenuto"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-surface focus:px-4 focus:py-2 focus:text-sm focus:shadow"
+          className="ui sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-surface focus:px-4 focus:py-2 focus:text-sm focus:shadow-lg"
         >
           Vai al contenuto
         </a>

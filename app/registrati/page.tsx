@@ -1,46 +1,47 @@
 import type { Metadata } from "next";
-import { Container, Eyebrow } from "@/components/ui";
+import { Container, Panel } from "@/components/ui";
 import { SignUpForm } from "@/components/auth-forms";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Crea un account gratuito",
   description:
-    "Registrati gratuitamente per scaricare prompt testati, modelli di policy interna e checklist di conformità per l'uso dell'AI nello studio.",
+    "Registrati gratuitamente per accedere a prompt testati, modelli di documento e checklist di conformità per l'uso dell'AI in studio.",
   path: "/registrati",
 });
 
 const inclusi = [
-  "Libreria di prompt divisa per attività di studio",
-  "Modello di policy interna sull'uso dell'AI",
-  "Checklist di conformità su dati e privacy",
-  "Fogli di lavoro con i controlli già impostati",
+  "Gli schemi di prompt divisi per attività di studio",
+  "I modelli di documento da adattare e far firmare",
+  "Le checklist di conformità su dati e privacy",
+  "L'avviso quando un materiale viene aggiornato",
 ];
 
 export default function RegistratiPage() {
   return (
-    <Container className="grid gap-14 py-16 lg:grid-cols-2 lg:gap-20">
-      <div className="max-w-md">
-        <Eyebrow>Accesso gratuito</Eyebrow>
-        <h1 className="t-h1 mt-4">Tutto il materiale, senza costi</h1>
-        <p className="t-lead mt-4">
-          Un account serve solo a tenere traccia degli aggiornamenti e a farti ritrovare le risorse quando cambiano.
-          Nessun piano a pagamento, nessuna versione ridotta.
+    <Container className="grid gap-x-16 gap-y-12 py-14 lg:grid-cols-[minmax(0,1fr)_26rem]">
+      <div className="max-w-[46ch]">
+        <h1 className="t-h1">Tutto il materiale, senza costi</h1>
+        <p className="t-deck mt-5">
+          Un account serve solo a farti ritrovare le risorse quando cambiano. Nessun piano a pagamento, nessuna
+          versione ridotta, nessun contatto commerciale.
         </p>
 
-        <ul className="mt-8 flex flex-col gap-3 border-t border-rule pt-6">
+        <ul className="mt-9 flex flex-col">
           {inclusi.map((voce) => (
-            <li key={voce} className="flex items-start gap-3 text-[0.93rem] leading-relaxed text-ink-soft">
-              <span aria-hidden="true" className="mt-2 h-px w-3 shrink-0 bg-accent" />
+            <li
+              key={voce}
+              className="border-t border-rule py-3 text-[0.98rem] leading-relaxed text-ink-2 last:border-b"
+            >
               {voce}
             </li>
           ))}
         </ul>
       </div>
 
-      <div className="rounded-lg border border-rule bg-surface p-6 sm:p-8">
+      <Panel className="p-6 sm:p-7">
         <SignUpForm />
-      </div>
+      </Panel>
     </Container>
   );
 }

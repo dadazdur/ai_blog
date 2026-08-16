@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ButtonLink, Container, Eyebrow } from "@/components/ui";
+import { ButtonLink, Column } from "@/components/ui";
 import { unsubscribe } from "@/app/actions/newsletter";
 
 export const metadata: Metadata = {
@@ -16,10 +16,9 @@ export default async function DisiscrivitiPage({
   const result = token ? await unsubscribe(token) : { ok: false as const, email: null };
 
   return (
-    <Container className="flex min-h-[60vh] max-w-xl flex-col justify-center py-20">
-      <Eyebrow>Newsletter</Eyebrow>
-      <h1 className="t-h1 mt-4">{result.ok ? "Disiscrizione completata" : "Link non valido"}</h1>
-      <p className="t-lead mt-4">
+    <Column className="flex min-h-[58vh] flex-col justify-center py-16">
+      <h1 className="t-h1">{result.ok ? "Disiscrizione completata" : "Link non valido"}</h1>
+      <p className="t-deck mt-4 max-w-[48ch]">
         {result.ok
           ? `Non riceverai più email a ${result.email}. Il blog resta aperto e gratuito, senza bisogno di iscrizione.`
           : "Questo link non è più valido. Se continui a ricevere email, scrivici e sistemiamo a mano."}
@@ -27,6 +26,6 @@ export default async function DisiscrivitiPage({
       <ButtonLink href="/blog" variant="outline" className="mt-8 self-start">
         Vai al blog
       </ButtonLink>
-    </Container>
+    </Column>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ButtonLink, Container, Eyebrow } from "@/components/ui";
+import { ButtonLink, Column } from "@/components/ui";
 import { confirmSubscription } from "@/app/actions/newsletter";
 
 export const metadata: Metadata = {
@@ -16,34 +16,32 @@ export default async function ConfermaPage({
   const result = token ? await confirmSubscription(token) : { ok: false as const, email: null };
 
   return (
-    <Container className="flex min-h-[60vh] max-w-xl flex-col justify-center py-20">
-      <Eyebrow>Newsletter</Eyebrow>
+    <Column className="flex min-h-[58vh] flex-col justify-center py-16">
       {result.ok ? (
         <>
-          <h1 className="t-h1 mt-4">Iscrizione confermata</h1>
-          <p className="t-lead mt-4">
-            Da ora ricevi le guide appena escono su <strong className="text-ink">{result.email}</strong>. Intanto,
-            il materiale scaricabile è già disponibile.
+          <h1 className="t-h1">Iscrizione confermata</h1>
+          <p className="t-deck mt-4 max-w-[48ch]">
+            Da ora ricevi le guide appena escono su <strong className="font-semibold text-ink">{result.email}</strong>.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink href="/risorse">Vai alle risorse</ButtonLink>
-            <ButtonLink href="/blog" variant="outline">
-              Leggi le guide
+            <ButtonLink href="/blog">Leggi le guide</ButtonLink>
+            <ButtonLink href="/risorse" variant="outline">
+              Vai alle risorse
             </ButtonLink>
           </div>
         </>
       ) : (
         <>
-          <h1 className="t-h1 mt-4">Link non valido</h1>
-          <p className="t-lead mt-4">
+          <h1 className="t-h1">Link non valido</h1>
+          <p className="t-deck mt-4 max-w-[48ch]">
             Questo link di conferma è scaduto o è già stato usato. Riprova l&apos;iscrizione dalla home: se il tuo
             indirizzo era già confermato, te lo diciamo subito.
           </p>
-          <ButtonLink href="/#newsletter" className="mt-8 self-start">
-            Torna al modulo
+          <ButtonLink href="/" className="mt-8 self-start">
+            Torna alla home
           </ButtonLink>
         </>
       )}
-    </Container>
+    </Column>
   );
 }

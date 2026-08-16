@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Container, Eyebrow, Notice } from "@/components/ui";
+import { Container, Notice } from "@/components/ui";
 import { DeletePostForm, PostEditor } from "@/components/admin/post-editor";
 import { createClient } from "@/lib/supabase/server";
 import type { Author, Category, Post } from "@/lib/types";
@@ -36,12 +36,12 @@ export default async function AdminArticoloPage({
     <Container className="py-10">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <Eyebrow>
+          <nav aria-label="Percorso" className="meta-sm">
             <Link href="/admin/articoli" className="hover:text-ink">
               Articoli
             </Link>{" "}
             / {post ? "modifica" : "nuovo"}
-          </Eyebrow>
+          </nav>
           <h1 className="t-h2 mt-2">{post ? post.title : "Nuovo articolo"}</h1>
         </div>
         {post ? <DeletePostForm id={post.id} slug={post.slug} /> : null}

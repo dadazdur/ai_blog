@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Container, Eyebrow } from "@/components/ui";
+import { Column } from "@/components/ui";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
@@ -12,10 +12,9 @@ export const metadata: Metadata = buildMetadata({
 
 export default function CookiePolicyPage() {
   return (
-    <Container className="max-w-3xl py-14">
-      <Eyebrow>Informativa</Eyebrow>
-      <h1 className="t-h1 mt-4">Cookie policy</h1>
-      <p className="t-meta mt-3">Ultimo aggiornamento: agosto 2026</p>
+    <Column className="py-12 sm:py-16">
+      <h1 className="t-h1">Cookie policy</h1>
+      <p className="meta mt-3">Ultimo aggiornamento: agosto 2026</p>
 
       <div className="prose mt-10">
         <h2>Perché non vedi un banner</h2>
@@ -67,6 +66,6 @@ export default function CookiePolicyPage() {
           <Link href="/privacy">privacy policy</Link>.
         </p>
       </div>
-    </Container>
+    </Column>
   );
 }

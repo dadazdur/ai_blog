@@ -19,21 +19,21 @@ export function Share({ url, title }: { url: string; title: string }) {
   const whatsapp = `https://wa.me/?text=${encodeURIComponent(`${title} ${url}`)}`;
   const email = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`;
 
-  const itemClass = "text-[0.83rem] text-ink-soft transition-colors hover:text-accent";
+  const item = "text-[0.86rem] text-ink-2 transition-colors hover:text-accent";
 
   return (
-    <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-      <span className="t-label">Condividi</span>
-      <a href={linkedin} target="_blank" rel="noopener" className={itemClass}>
+    <div className="ui flex flex-wrap items-center gap-x-5 gap-y-2">
+      <span className="text-[0.82rem] font-semibold text-ink">Condividi</span>
+      <a href={linkedin} target="_blank" rel="noopener" className={item}>
         LinkedIn
       </a>
-      <a href={whatsapp} target="_blank" rel="noopener" className={itemClass}>
+      <a href={whatsapp} target="_blank" rel="noopener" className={item}>
         WhatsApp
       </a>
-      <a href={email} className={itemClass}>
+      <a href={email} className={item}>
         Email
       </a>
-      <button type="button" onClick={copy} className={itemClass}>
+      <button type="button" onClick={copy} className={item}>
         {copied ? "Link copiato" : "Copia link"}
       </button>
     </div>

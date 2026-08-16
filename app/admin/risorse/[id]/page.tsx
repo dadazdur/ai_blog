@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Container, Eyebrow, Notice } from "@/components/ui";
+import { Container, Notice } from "@/components/ui";
 import { DeleteResourceForm, ResourceEditor } from "@/components/admin/resource-editor";
 import { createClient } from "@/lib/supabase/server";
 import type { Resource } from "@/lib/types";
@@ -31,12 +31,12 @@ export default async function AdminRisorsaPage({
     <Container className="py-10">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <Eyebrow>
+          <nav aria-label="Percorso" className="meta-sm">
             <Link href="/admin/risorse" className="hover:text-ink">
               Risorse
             </Link>{" "}
             / {resource ? "modifica" : "nuova"}
-          </Eyebrow>
+          </nav>
           <h1 className="t-h2 mt-2">{resource ? resource.title : "Nuova risorsa"}</h1>
         </div>
         {resource ? <DeleteResourceForm id={resource.id} filePath={resource.file_path} /> : null}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container, Eyebrow, Notice } from "@/components/ui";
+import { Container, Notice } from "@/components/ui";
 import { ProfileForm } from "@/components/auth-forms";
 import { getProfile } from "@/lib/supabase/server";
 import { formatDate } from "@/lib/utils";
@@ -19,16 +19,15 @@ export default async function ProfiloPage() {
 
   return (
     <Container className="max-w-2xl py-12 sm:py-16">
-      <Eyebrow>Profilo</Eyebrow>
       <h1 className="t-h1 mt-4">I tuoi dati</h1>
 
       <dl className="mt-8 grid gap-x-10 gap-y-5 border-y border-rule py-6 sm:grid-cols-2">
         <div>
-          <dt className="t-label">Email</dt>
+          <dt className="ui text-[0.82rem] font-medium text-ink">Email</dt>
           <dd className="mt-1 text-[0.95rem] text-ink">{profile.email}</dd>
         </div>
         <div>
-          <dt className="t-label">Iscritto dal</dt>
+          <dt className="ui text-[0.82rem] font-medium text-ink">Iscritto dal</dt>
           <dd className="mt-1 text-[0.95rem] text-ink num">{formatDate(profile.created_at)}</dd>
         </div>
       </dl>
@@ -42,9 +41,9 @@ export default async function ProfiloPage() {
 
       <div className="mt-12 border-t border-rule pt-8">
         <h2 className="t-h3">Password</h2>
-        <p className="mt-2 text-[0.92rem] text-ink-soft">
+        <p className="mt-2 text-[0.92rem] text-ink-2">
           Puoi cambiarla quando vuoi dalla{" "}
-          <Link href="/area-riservata/password" className="link-underline text-accent">
+          <Link href="/area-riservata/password" className="link text-accent">
             pagina dedicata
           </Link>
           .
