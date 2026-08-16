@@ -95,10 +95,43 @@ la modifica di `lib/email.ts`) il flusso diventa automatico.
 
 ## Deploy su Vercel
 
-1. Carica il progetto su un repository Git e importalo su Vercel.
-2. Aggiungi le stesse variabili di `.env.local` (con `NEXT_PUBLIC_SITE_URL` sul dominio definitivo).
-3. Collega il dominio e aggiorna i Redirect URL su Supabase.
-4. Invia la sitemap in Google Search Console: `https://iltuodominio.it/sitemap.xml`.
+Progetto: **ai-blog** (team *Andrea's projects*), collegato al repository. Produzione:
+<https://ai-blog-kappa-lake.vercel.app>.
+
+### Variabili d'ambiente
+
+Da aggiungere in *Project Settings → Environment Variables*. Senza le prime due il sito online gira sui
+contenuti dimostrativi: niente newsletter, niente registrazione, niente area riservata, niente admin.
+
+| Variabile | Ambienti | Note |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Production, Preview, Development | `https://fpiheqzelhylvblyxeoy.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Production, Preview, Development | chiave `anon` da Supabase → API Keys |
+| `SUPABASE_SERVICE_ROLE_KEY` | Production, Preview | marcala **Sensitive**; mai in una variabile `NEXT_PUBLIC_` |
+| `NEXT_PUBLIC_SITE_URL` | Production | **solo** quando avrai il dominio definitivo |
+| `RESEND_API_KEY` | Production | facoltativa: senza, le email non partono |
+
+`NEXT_PUBLIC_SITE_URL` non è obbligatoria su Vercel: se manca, il sito usa il dominio che Vercel espone
+da sé (`VERCEL_PROJECT_PRODUCTION_URL`). Impostala solo per puntare al dominio definitivo — un valore
+sbagliato è peggio di nessun valore, perché il canonical manderebbe i motori su un dominio che non esiste.
+
+### Redirect URL su Supabase
+
+*Authentication → URL Configuration*. Senza questo passaggio i link di conferma registrazione e di
+recupero password non riportano al sito:
+
+- Site URL: `https://ai-blog-kappa-lake.vercel.app`
+- Redirect URLs: `https://ai-blog-kappa-lake.vercel.app/auth/callback`, `http://localhost:3000/auth/callback`
+  e, con il carattere jolly per le anteprime, `https://ai-blog-*-andreas-projects-df4599ea.vercel.app/auth/callback`
+
+### Indicizzazione
+
+Solo il dominio di produzione entra nell'indice. Sulle anteprime `robots.txt` risponde `Disallow: /` e ogni
+pagina porta `noindex, nofollow`, così le anteprime non competono con il sito vero sulle stesse parole.
+Il comportamento è deciso da `VERCEL_ENV`, che Vercel imposta da sé.
+
+Quando il dominio definitivo sarà attivo: collegalo su Vercel, aggiorna `NEXT_PUBLIC_SITE_URL` e i Redirect
+URL su Supabase, poi invia `https://iltuodominio.it/sitemap.xml` a Google Search Console.
 
 ## Note
 

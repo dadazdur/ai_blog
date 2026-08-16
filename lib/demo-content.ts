@@ -14,9 +14,10 @@ export const demoAuthors: Author[] = [
     id: "a1000000-0000-4000-8000-000000000001",
     slug: "andrea-durante",
     name: "Andrea Durante",
-    role_title: "Dottore commercialista",
-    credentials: "Iscritto all'Ordine dei Dottori Commercialisti e degli Esperti Contabili",
-    bio: "Dottore commercialista. Da due anni porta modelli linguistici dentro il lavoro quotidiano di studio: revisione bilanci, ricerca normativa, gestione della corrispondenza con i clienti. Su Studio Aumentato racconta solo quello che ha testato in prima persona, compresi gli errori.",
+    role_title: null,
+    credentials: null,
+    // Segnaposto: nessuna qualifica dichiarata finché non la confermi tu.
+    bio: "Porta modelli linguistici dentro il lavoro quotidiano di studio: revisione bilanci, ricerca normativa, gestione della corrispondenza con i clienti. Su Studio Aumentato racconta solo quello che ha testato in prima persona, compresi gli errori.",
     avatar_url: null,
     linkedin_url: "https://www.linkedin.com/in/andrea-durante",
     email: "andrea@studioaumentato.it",

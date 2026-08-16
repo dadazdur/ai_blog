@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { absoluteUrl, siteConfig } from "@/lib/site";
+import { absoluteUrl, isProductionDeploy, siteConfig } from "@/lib/site";
 import type { Author, Category, FaqItem, Post } from "@/lib/types";
 
 const ORGANIZATION_ID = `${siteConfig.url}/#organization`;
@@ -43,7 +43,13 @@ export function buildMetadata({
     title,
     description,
     alternates: { canonical: canonical || url },
-    robots: noindex ? { index: false, follow: true } : undefined,
+    // Ogni pagina ridichiara robots, quindi il valore del layout non basta:
+    // fuori dalla produzione il noindex va rimesso qui, pagina per pagina.
+    robots: !isProductionDeploy
+      ? { index: false, follow: false }
+      : noindex
+        ? { index: false, follow: true }
+        : undefined,
     openGraph: {
       type,
       url,
@@ -99,7 +105,7 @@ export function websiteSchema() {
   };
 }
 
-// `jobTitle` resta fuori dai dati strutturati: la qualifica dell'autore è una
+// Né `jobTitle` né `hasCredential` entrano nei dati strutturati: la qualifica dell'autore è una
 // decisione aperta, e un titolo professionale in JSON-LD è un'affermazione
 // leggibile dalle macchine che nessuno ha ancora confermato.
 export function personSchema(author: Author) {
@@ -112,9 +118,6 @@ export function personSchema(author: Author) {
     description: author.bio ?? undefined,
     image: author.avatar_url ?? undefined,
     sameAs: author.linkedin_url ? [author.linkedin_url] : undefined,
-    hasCredential: author.credentials
-      ? { "@type": "EducationalOccupationalCredential", credentialCategory: author.credentials }
-      : undefined,
     worksFor: { "@id": ORGANIZATION_ID },
   };
 }

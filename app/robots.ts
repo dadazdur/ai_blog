@@ -1,7 +1,13 @@
 import type { MetadataRoute } from "next";
-import { absoluteUrl, siteConfig } from "@/lib/site";
+import { absoluteUrl, isProductionDeploy, siteConfig } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
+  // Anteprime e sviluppo restano fuori dall'indice: un'anteprima indicizzata
+  // compete con la produzione sulle stesse parole e si porta via le posizioni.
+  if (!isProductionDeploy) {
+    return { rules: [{ userAgent: "*", disallow: "/" }] };
+  }
+
   return {
     rules: [
       {

@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
-import { siteConfig } from "@/lib/site";
+import { isProductionDeploy, siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const literata = Literata({
@@ -73,11 +73,15 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: ["/api/og"],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
-  },
+  // Solo il dominio di produzione entra nell'indice: le anteprime di Vercel
+  // servono lo stesso contenuto e, indicizzate, competerebbero col sito vero.
+  robots: isProductionDeploy
+    ? {
+        index: true,
+        follow: true,
+        googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+      }
+    : { index: false, follow: false },
   formatDetection: { telephone: false },
 };
 
