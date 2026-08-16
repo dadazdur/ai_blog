@@ -43,7 +43,7 @@ export default async function CategoryPage({ params }: { params: Params }) {
           </Link>
           <span aria-hidden="true"> / </span>
           <Link href="/blog" className="transition-colors hover:text-ink">
-            Blog
+            Articoli
           </Link>
           <span aria-hidden="true"> / </span>
           <span>{category.name}</span>
@@ -88,7 +88,7 @@ export default async function CategoryPage({ params }: { params: Params }) {
         data={[
           breadcrumbSchema([
             { name: "Home", path: "/" },
-            { name: "Blog", path: "/blog" },
+            { name: "Articoli", path: "/blog" },
             { name: category.name, path: `/blog/categoria/${category.slug}` },
           ]),
           collectionSchema({

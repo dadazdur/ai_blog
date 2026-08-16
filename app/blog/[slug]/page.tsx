@@ -69,7 +69,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
             </Link>
             <span aria-hidden="true"> / </span>
             <Link href="/blog" className="transition-colors hover:text-ink">
-              Blog
+              Articoli
             </Link>
             {post.category ? (
               <>
@@ -167,7 +167,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
           articleSchema(post, wordCount),
           breadcrumbSchema([
             { name: "Home", path: "/" },
-            { name: "Blog", path: "/blog" },
+            { name: "Articoli", path: "/blog" },
             ...(post.category ? [{ name: post.category.name, path: `/blog/categoria/${post.category.slug}` }] : []),
             { name: post.title, path: `/blog/${post.slug}` },
           ]),

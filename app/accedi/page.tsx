@@ -4,7 +4,7 @@ import { SignInForm } from "@/components/auth-forms";
 
 export const metadata: Metadata = {
   title: "Accedi",
-  description: "Accedi all'area riservata di Studio Aumentato.",
+  description: "Accedi all'area riservata di Le Scritture.",
   robots: { index: false, follow: true },
 };
 

@@ -28,17 +28,17 @@ export const deployEnv = process.env.NEXT_PUBLIC_VERCEL_ENV ?? process.env.VERCE
 export const isProductionDeploy = deployEnv === "production";
 
 export const siteConfig = {
-  name: "Studio Aumentato",
+  name: "Le Scritture",
   tagline: "L'intelligenza artificiale al servizio del tuo studio",
   description:
-    "Guide pratiche, prompt testati e strumenti operativi per commercialisti che vogliono usare l'intelligenza artificiale nel lavoro di ogni giorno, senza perdere il controllo.",
+    "Guide pratiche, prompt testati e strumenti operativi per consulenti fiscali e d'impresa che vogliono usare l'intelligenza artificiale nel lavoro di ogni giorno, senza perdere il controllo.",
   url: readSiteUrl(),
   locale: "it_IT",
   lang: "it",
-  email: "redazione@studioaumentato.it",
-  linkedin: "https://www.linkedin.com/company/studio-aumentato",
+  email: "redazione@lescritture.it",
+  linkedin: "https://www.linkedin.com/company/le-scritture",
   nav: [
-    { label: "Blog", href: "/blog" },
+    { label: "Articoli", href: "/blog" },
     { label: "Risorse", href: "/risorse" },
     { label: "Chi siamo", href: "/chi-siamo" },
   ],

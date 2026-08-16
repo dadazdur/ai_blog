@@ -10,7 +10,7 @@ export const revalidate = 600;
 export const metadata: Metadata = buildMetadata({
   title: "Risorse per lo studio: prompt, modelli e checklist",
   description:
-    "Prompt testati, modelli di documento e checklist operative per commercialisti. Accesso gratuito con registrazione.",
+    "Prompt testati, modelli di documento e checklist operative per consulenti fiscali e d'impresa. Accesso gratuito con registrazione.",
   path: "/risorse",
 });
 

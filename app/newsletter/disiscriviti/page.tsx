@@ -20,11 +20,11 @@ export default async function DisiscrivitiPage({
       <h1 className="t-h1">{result.ok ? "Disiscrizione completata" : "Link non valido"}</h1>
       <p className="t-deck mt-4 max-w-[48ch]">
         {result.ok
-          ? `Non riceverai più email a ${result.email}. Il blog resta aperto e gratuito, senza bisogno di iscrizione.`
+          ? `Non riceverai più email a ${result.email}. Gli articoli restano aperti e gratuiti, senza bisogno di iscrizione.`
           : "Questo link non è più valido. Se continui a ricevere email, scrivici e sistemiamo a mano."}
       </p>
       <ButtonLink href="/blog" variant="outline" className="mt-8 self-start">
-        Vai al blog
+        Vai agli articoli
       </ButtonLink>
     </Column>
   );

@@ -5,7 +5,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/site";
 
 export function Wordmark({ className }: { className?: string }) {
-  return <span className={className}>Studio Aumentato</span>;
+  return <span className={className}>Le Scritture</span>;
 }
 
 export function SiteHeader() {

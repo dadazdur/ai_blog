@@ -11,7 +11,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = buildMetadata({
   title: "Chi siamo",
   description:
-    "Studio Aumentato è un progetto editoriale sull'intelligenza artificiale per commercialisti, scritto da chi lavora in studio.",
+    "Le Scritture è un progetto editoriale sull'intelligenza artificiale per consulenti fiscali e d'impresa, scritto da chi lavora in studio.",
   path: "/chi-siamo",
 });
 

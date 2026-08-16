@@ -8,7 +8,7 @@ web
 
 ## Users
 
-Commercialisti italiani. Il sito parla da professionista a professionista: il lettore esercita, ha scadenze,
+Consulenti fiscali italiani. Il sito parla da professionista a professionista: il lettore esercita, ha scadenze,
 e valuta in pochi secondi se un contenuto gli farà risparmiare tempo o gli farà perdere tempo.
 
 Il lavoro che sta facendo quando arriva: capire se e come usare l'intelligenza artificiale in un'attività
@@ -19,7 +19,7 @@ un'estensione plausibile ma non confermata dall'utente.
 
 ## Product Purpose
 
-Progetto editoriale: insegnare ai commercialisti italiani a usare l'AI nel lavoro quotidiano di studio.
+Progetto editoriale: insegnare ai consulenti fiscali e d'impresa italiani a usare l'AI nel lavoro quotidiano di studio.
 
 Il successo si misura in pubblico e iscritti alla newsletter. **Non c'è nessuna offerta commerciale**:
 niente corsi, consulenze, abbonamenti o listini. L'eventuale monetizzazione è una decisione rinviata,
@@ -58,7 +58,7 @@ I vincoli professionali che ogni contenuto operativo deve rispettare: segreto pr
 
 ## Brand Commitments
 
-- Nome: **Studio Aumentato**
+- Nome: **Le Scritture**
 - **Nessun logo**, per richiesta esplicita dell'utente: l'identità è solo tipografica
 - Accesso alle risorse gratuito, senza livelli a pagamento
 - Voce: nessun hype, nessuna promessa, nessun linguaggio da convegno. Si dichiarano i limiti

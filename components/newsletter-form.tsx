@@ -8,15 +8,15 @@ import { newsletterInitialState } from "@/lib/form-state";
 import { buttonClass, inputClass } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
-function SubmitButton({ label, onAccent }: { label: string; onAccent?: boolean }) {
+function SubmitButton({ label, onPanel }: { label: string; onPanel?: boolean }) {
   const { pending } = useFormStatus();
   return (
     <button
       type="submit"
       disabled={pending}
       className={cn(
-        onAccent
-          ? "ui inline-flex h-11 items-center justify-center rounded-[3px] bg-accent-solid-ink px-5 text-[0.95rem] font-medium text-accent-solid transition-opacity hover:opacity-90 disabled:opacity-50"
+        onPanel
+          ? "ui inline-flex h-11 items-center justify-center rounded-[3px] bg-panel-btn-bg px-5 text-[0.95rem] font-medium text-panel-btn-ink transition-opacity hover:opacity-90 disabled:opacity-50"
           : buttonClass("primary"),
         "shrink-0",
       )}
@@ -30,13 +30,13 @@ export function NewsletterForm({
   source = "sito",
   label = "Iscrivimi",
   stacked = false,
-  onAccent = false,
+  onPanel = false,
 }: {
   source?: string;
   label?: string;
   stacked?: boolean;
-  /** Il modulo vive sopra il fondo oxblood: il pulsante si inverte e il testo si schiarisce. */
-  onAccent?: boolean;
+  /** Il modulo vive sopra il pannello pieno: pulsante invertito e testi sui token del pannello. */
+  onPanel?: boolean;
 }) {
   const [state, formAction] = useActionState(subscribeToNewsletter, newsletterInitialState);
 
@@ -46,8 +46,8 @@ export function NewsletterForm({
         role="status"
         className={cn(
           "ui px-4 py-3 text-[0.9rem] leading-relaxed",
-          onAccent
-            ? "border border-accent-solid-ink/35 text-accent-solid-ink"
+          onPanel
+            ? "border border-panel-ink/35 text-panel-ink"
             : "border border-accent/40 bg-accent-wash text-ink",
         )}
       >
@@ -74,11 +74,11 @@ export function NewsletterForm({
           aria-invalid={state.status === "error"}
           className={cn(
             inputClass,
-            onAccent && "border-transparent",
+            onPanel && "border-transparent",
             state.status === "error" && "border-danger",
           )}
         />
-        <SubmitButton label={label} onAccent={onAccent} />
+        <SubmitButton label={label} onPanel={onPanel} />
       </div>
 
       {/* Honeypot: invisibile alle persone, irresistibile per i bot. */}
@@ -94,18 +94,22 @@ export function NewsletterForm({
       <label
         className={cn(
           "ui flex items-start gap-2.5 text-[0.78rem] leading-snug",
-          onAccent ? "text-accent-solid-ink/85" : "text-ink-3",
+          onPanel ? "text-panel-ink-2" : "text-ink-3",
         )}
       >
         <input
           type="checkbox"
           name="consenso"
           required
-          className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[var(--accent)]"
+          className={cn(
+            "mt-0.5 h-3.5 w-3.5 shrink-0",
+            // Sul pannello l'accento sparirebbe contro il fondo: si usa il suo inchiostro.
+            onPanel ? "accent-[var(--panel-ink)]" : "accent-[var(--accent)]",
+          )}
         />
         <span>
           Acconsento al trattamento dei dati per ricevere la newsletter, come descritto nella{" "}
-          <Link href="/privacy" className={onAccent ? "underline underline-offset-2" : "link"}>
+          <Link href="/privacy" className={onPanel ? "underline underline-offset-2" : "link"}>
             privacy policy
           </Link>
           . Disiscrizione con un clic.
@@ -113,7 +117,7 @@ export function NewsletterForm({
       </label>
 
       {state.status === "error" && state.message ? (
-        <p role="alert" className={cn("ui text-[0.85rem] leading-snug", onAccent ? "text-accent-solid-ink" : "text-danger")}>
+        <p role="alert" className={cn("ui text-[0.85rem] leading-snug", onPanel ? "text-panel-ink" : "text-danger")}>
           {state.message}
         </p>
       ) : null}

@@ -5,9 +5,9 @@ import { buildMetadata } from "@/lib/seo";
 export const revalidate = 300;
 
 export const metadata: Metadata = buildMetadata({
-  title: "Blog: intelligenza artificiale per commercialisti",
+  title: "AI per commercialisti e consulenti fiscali",
   description:
-    "Guide operative, prompt testati e analisi sull'uso dell'intelligenza artificiale nello studio commercialista: casi d'uso concreti, privacy dei dati e strumenti a confronto.",
+    "Guide operative, prompt testati e analisi sull'uso dell'intelligenza artificiale nello studio professionale: casi d'uso concreti, privacy dei dati e strumenti a confronto.",
   path: "/blog",
 });
 

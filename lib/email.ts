@@ -2,7 +2,7 @@ import "server-only";
 import { siteConfig } from "@/lib/site";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY ?? "";
-const EMAIL_FROM = process.env.EMAIL_FROM ?? `${siteConfig.name} <noreply@studioaumentato.it>`;
+const EMAIL_FROM = process.env.EMAIL_FROM ?? `${siteConfig.name} <noreply@lescritture.it>`;
 
 type SendResult = { sent: boolean; reason?: string };
 
@@ -49,12 +49,12 @@ export async function sendEmail({
   }
 }
 
-const shell = (body: string) => `<!doctype html><html lang="it"><body style="margin:0;background:#f3f5f1;padding:32px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#14211c">
+const shell = (body: string) => `<!doctype html><html lang="it"><body style="margin:0;background:#f5f5f3;padding:32px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#161514">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
-<table role="presentation" width="100%" style="max-width:520px;background:#ffffff;border:1px solid #dce2d8;border-radius:8px;padding:32px">
+<table role="presentation" width="100%" style="max-width:520px;background:#ffffff;border:1px solid #e2e1dd;border-radius:8px;padding:32px">
 <tr><td style="font-size:20px;font-weight:600;padding-bottom:16px">${siteConfig.name}</td></tr>
 ${body}
-<tr><td style="padding-top:28px;border-top:1px solid #dce2d8;color:#56655c;font-size:12px;line-height:1.6">
+<tr><td style="padding-top:28px;border-top:1px solid #e2e1dd;color:#55534e;font-size:12px;line-height:1.6">
 Hai ricevuto questa email perché il tuo indirizzo è stato inserito su ${siteConfig.url}. Se non sei stato tu, ignora il messaggio: senza conferma non riceverai altro.
 </td></tr>
 </table></td></tr></table></body></html>`;
@@ -68,9 +68,9 @@ export function newsletterConfirmationEmail(confirmUrl: string) {
 Manca un passaggio solo. Conferma il tuo indirizzo e inizierai a ricevere le guide pratiche sull'intelligenza artificiale per lo studio.
 </td></tr>
 <tr><td style="padding-bottom:20px">
-<a href="${confirmUrl}" style="display:inline-block;background:#0a6b4e;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:15px;font-weight:500">Confermo l'iscrizione</a>
+<a href="${confirmUrl}" style="display:inline-block;background:#7b1e2e;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:3px;font-size:15px;font-weight:500">Confermo l'iscrizione</a>
 </td></tr>
-<tr><td style="font-size:13px;line-height:1.6;color:#56655c;word-break:break-all;padding-bottom:8px">
+<tr><td style="font-size:13px;line-height:1.6;color:#55534e;word-break:break-all;padding-bottom:8px">
 Se il pulsante non funziona, copia questo indirizzo nel browser:<br />${confirmUrl}
 </td></tr>`),
   };
@@ -85,7 +85,7 @@ export function welcomeEmail(resourcesUrl: string) {
 Iscrizione confermata. Da ora ricevi le guide operative appena escono, senza rumore: una email quando c'è qualcosa che vale il tuo tempo.
 </td></tr>
 <tr><td style="padding-bottom:20px">
-<a href="${resourcesUrl}" style="display:inline-block;background:#0a6b4e;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:15px;font-weight:500">Vai alle risorse</a>
+<a href="${resourcesUrl}" style="display:inline-block;background:#7b1e2e;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:3px;font-size:15px;font-weight:500">Vai alle risorse</a>
 </td></tr>`),
   };
 }

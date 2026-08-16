@@ -15,9 +15,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { numero } = await params;
   return buildMetadata({
-    title: `Blog: intelligenza artificiale per commercialisti — pagina ${numero}`,
+    title: `AI per commercialisti e consulenti fiscali — pagina ${numero}`,
     description:
-      "Archivio degli articoli di Studio Aumentato sull'uso dell'intelligenza artificiale nello studio commercialista.",
+      "Archivio degli articoli di Le Scritture sull'uso dell'intelligenza artificiale nello studio professionale.",
     path: `/blog/pagina/${numero}`,
   });
 }

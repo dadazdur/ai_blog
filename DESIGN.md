@@ -33,9 +33,16 @@ appuntamenti, quindi la carta vince.
 | `--accent-solid` riempimenti pieni | `#7b1e2e` | `#8e2839` |
 | `--accent-solid-ink` testo sul pieno | `#ffffff` | `#fdf3f4` |
 | `--accent-wash` campo tenue | `#f6eaec` | `#2a1c1f` |
+| `--panel-bg` fondo del pannello iscrizione | `#2b151a` | `#8e2839` |
+| `--panel-ink` testo sul pannello | `#f4eeeb` | `#fdf3f4` |
 
 L'accento è un oxblood: autorevole senza essere il blu da software né il rosso da segnale. I neutri hanno
 una punta di verde-grigio, così la carta legge come carta e non come grigio di sistema.
+
+**Il pannello di iscrizione cambia tinta con il tema, non solo luminosità.** A restare costante è la
+relazione con la pagina: su carta chiara un pieno oxblood urla, quindi il blocco si scurisce quasi
+all'inchiostro tenendo la traccia di vino; su fondo scuro è il vino saturo a staccarlo. Contrasto misurato:
+14,9:1 in chiaro e 7,7:1 in scuro sul testo principale.
 
 **Due token per l'accento, non uno.** Sul fondo scuro un rosa chiaro serve al testo ma svilisce un
 pulsante; `--accent-solid` resta un vino profondo con testo chiaro in entrambi i temi.
@@ -81,7 +88,7 @@ nella riga di metadati.
 
 ## Componenti
 
-- `NewsletterPanel` — fondo `--accent-solid` a tutta colonna, spigoli vivi, pulsante invertito.
+- `NewsletterPanel` — fondo `--panel-bg` a tutta colonna, spigoli vivi, pulsante invertito.
 - `ArticleRow` / `LeadArticle` — riga di metadati (data · categoria · minuti), titolo, sommario; la voce
   in testata aggiunge le prime righe reali dell'articolo.
 - `Notice`, `Field`, `inputClass` — bordo `--rule-strong`, raggio 3px, bordo accento al fuoco.
@@ -111,6 +118,13 @@ Condizione di lancio, non eccezione. Le sezioni che sarebbero vuote non vengono 
 articoli» e il materiale operativo scompaiono se non c'è nulla da mostrare, e `/risorse` e
 `/area-riservata` portano un testo scritto al posto di una griglia vuota. Nessun conteggio di inventario
 in interfaccia.
+
+## Cascata
+
+Le regole sugli elementi (`*`, `html`, `body`, i titoli, le pseudo-classi) stanno dentro `@layer base`.
+Non è un dettaglio di stile: in Tailwind v4 una regola **senza layer batte le utility**, quindi un
+`h1,h2,h3,h4 { color }` fuori dal layer impedirebbe a `text-panel-ink` di colorare un titolo dentro una
+regione scura. È già successo una volta.
 
 ## Cosa non fare
 

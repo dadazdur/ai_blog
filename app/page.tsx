@@ -34,8 +34,8 @@ export default async function HomePage() {
       <div className="border-b border-rule bg-surface">
         <Container className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-1.5 py-3">
           <p className="ui text-[0.875rem] leading-snug text-ink-2">
-            Intelligenza artificiale per commercialisti: guide operative, prompt testati, regole chiare sui dati
-            dei clienti.
+            Intelligenza artificiale per consulenti fiscali e d&apos;impresa: guide operative, prompt testati,
+            regole chiare sui dati dei clienti.
           </p>
           <Link href="/chi-siamo" className="ui text-[0.8rem] text-ink-3 transition-colors hover:text-accent">
             Chi siamo

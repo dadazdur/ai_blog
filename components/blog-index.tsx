@@ -28,7 +28,7 @@ export async function BlogIndex({ page }: { page: number }) {
             Home
           </Link>
           <span aria-hidden="true"> / </span>
-          <span>Blog{page > 1 ? ` — pagina ${page}` : ""}</span>
+          <span>Articoli{page > 1 ? ` — pagina ${page}` : ""}</span>
         </nav>
 
         <h1 className="t-h1 mt-4 max-w-[20ch]">Come si usa l&apos;AI in uno studio</h1>
@@ -108,10 +108,10 @@ export async function BlogIndex({ page }: { page: number }) {
         data={[
           breadcrumbSchema([
             { name: "Home", path: "/" },
-            { name: "Blog", path: "/blog" },
+            { name: "Articoli", path: "/blog" },
           ]),
           collectionSchema({
-            name: "Blog — intelligenza artificiale per commercialisti",
+            name: "Articoli — AI per commercialisti e consulenti fiscali",
             description: siteConfig.description,
             path: pageHref(page),
             posts,

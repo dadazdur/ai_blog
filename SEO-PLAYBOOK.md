@@ -1,4 +1,10 @@
-# Playbook SEO — Studio Aumentato
+# Playbook SEO — Le Scritture
+
+> **Pubblico e parola-chiave non coincidono, ed è voluto.** Il sito si rivolge a
+> *consulenti fiscali e d'impresa*, ma la parola che quelle stesse persone digitano su Google è
+> *commercialista*. Titoli SEO, meta description e keyword di riferimento tengono quindi il termine cercato
+> (spesso affiancandolo a quello nuovo); il testo delle pagine usa il termine con cui vuoi essere letto.
+> Non è un'incoerenza: è la differenza tra come ti cercano e come ti presenti.
 
 Il sito è già a posto sul piano tecnico. Da qui in avanti il posizionamento dipende da tre cose: **scegliere le
 ricerche giuste**, **coprirle meglio di chi c'è già** e **far sapere in giro che esisti**. Questo documento è il

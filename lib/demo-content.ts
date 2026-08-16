@@ -17,10 +17,10 @@ export const demoAuthors: Author[] = [
     role_title: null,
     credentials: null,
     // Segnaposto: nessuna qualifica dichiarata finché non la confermi tu.
-    bio: "Porta modelli linguistici dentro il lavoro quotidiano di studio: revisione bilanci, ricerca normativa, gestione della corrispondenza con i clienti. Su Studio Aumentato racconta solo quello che ha testato in prima persona, compresi gli errori.",
+    bio: "Porta modelli linguistici dentro il lavoro quotidiano di studio: revisione bilanci, ricerca normativa, gestione della corrispondenza con i clienti. Su Le Scritture racconta solo quello che ha testato in prima persona, compresi gli errori.",
     avatar_url: null,
     linkedin_url: "https://www.linkedin.com/in/andrea-durante",
-    email: "andrea@studioaumentato.it",
+    email: "andrea@lescritture.it",
   },
 ];
 
@@ -102,7 +102,7 @@ export const demoPosts: Post[] = [
           "Per provare no, ma per lavorare sì. Le versioni gratuite hanno limiti di contesto e non offrono le garanzie contrattuali sul trattamento dei dati che servono a uno studio professionale. Un piano business per persona al mese costa meno di un'ora fatturata.",
       },
       {
-        question: "L'AI può sostituire il commercialista?",
+        question: "L'AI può sostituire il consulente?",
         answer:
           "No, e non è la domanda utile. Un modello linguistico non si assume responsabilità professionale, non firma, non conosce il cliente. Sostituisce porzioni di lavoro ripetitivo — prima stesura, riordino, controllo incrociato — lasciando al professionista il giudizio.",
       },
@@ -136,7 +136,7 @@ Quest'ultimo punto è il più importante. L'AI produce risposte plausibili anche
 
 La differenza tra una risposta inutile e una risposta utilizzabile sta quasi sempre nel contesto. Un prompt che funziona contiene quattro elementi:
 
-1. **Ruolo e destinatario** — chi scrive e per chi. "Scrivi come commercialista a un cliente artigiano senza formazione contabile" produce un testo diverso da "prepara un promemoria tecnico per un collega".
+1. **Ruolo e destinatario** — chi scrive e per chi. "Scrivi come consulente fiscale a un cliente artigiano senza formazione contabile" produce un testo diverso da "prepara un promemoria tecnico per un collega".
 2. **Materiale** — il documento, i dati, il testo di partenza. Incollato, non riassunto da te.
 3. **Formato preciso** — lunghezza, struttura, cosa deve esserci e cosa non deve esserci.
 4. **Vincoli** — "non citare norme senza che io le abbia fornite", "segnala i punti dove servono dati che non hai".
@@ -241,7 +241,7 @@ L'ordine conta meno della presenza di tutti e cinque i blocchi. Il blocco che qu
 ## 1. Tradurre una comunicazione dell'Agenzia per il cliente
 
 \`\`\`
-Sei il commercialista di [tipo di cliente: piccolo imprenditore senza
+Sei il consulente fiscale di [tipo di cliente: piccolo imprenditore senza
 formazione contabile]. Riscrivi la comunicazione qui sotto in un'email
 di massimo 150 parole.
 
@@ -602,7 +602,7 @@ export const demoResources: Resource[] = [
     description:
       "Trenta schemi di prompt divisi per attività: bilancio, contenzioso, corrispondenza con i clienti, consulenza del lavoro. Ognuno con le note sui punti in cui il modello tende a sbagliare.",
     type: "prompt",
-    prompt_text: `RUOLO: sei il commercialista di [tipo di cliente].
+    prompt_text: `RUOLO: sei il consulente fiscale di [tipo di cliente].
 COMPITO: [cosa deve produrre, in una frase].
 MATERIALE: ---
 [incolla qui documento o dati]

@@ -53,7 +53,7 @@ export function AuthorForm({ author }: { author?: Author }) {
         />
       </Field>
 
-      <Field label="Qualifica" htmlFor={`role-${id}`} hint="Es. Dottore commercialista.">
+      <Field label="Qualifica" htmlFor={`role-${id}`} hint="Es. Consulente fiscale e d'impresa.">
         <input id={`role-${id}`} name="role_title" defaultValue={author?.role_title ?? ""} className={inputClass} />
       </Field>
 

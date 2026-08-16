@@ -85,7 +85,7 @@ export function organizationSchema() {
     sameAs: [siteConfig.linkedin],
     knowsAbout: [
       "Intelligenza artificiale applicata alla professione contabile",
-      "Automazione degli studi commercialisti",
+      "Automazione degli studi professionali",
       "Protezione dei dati nell'uso dell'AI",
     ],
     areaServed: { "@type": "Country", name: "Italia" },
@@ -212,7 +212,7 @@ export function collectionSchema({
 
 export function categoryMetadataDefaults(category: Category) {
   return {
-    title: category.seo_title || `${category.name} — articoli per commercialisti`,
+    title: category.seo_title || `${category.name} — guide per consulenti fiscali`,
     description:
       category.seo_description ||
       category.description ||

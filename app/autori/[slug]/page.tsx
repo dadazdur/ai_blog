@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     title: author.name,
     description:
       author.bio?.slice(0, 155) ??
-      `Articoli sull'intelligenza artificiale per commercialisti firmati da ${author.name}.`,
+      `Articoli sull'intelligenza artificiale per consulenti fiscali e d'impresa firmati da ${author.name}.`,
     path: `/autori/${author.slug}`,
   });
 }

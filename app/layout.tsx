@@ -50,13 +50,15 @@ export const metadata: Metadata = {
   keywords: [
     "intelligenza artificiale commercialisti",
     "AI per commercialisti",
-    "AI studio commercialista",
+    "AI per consulenti fiscali",
+    "AI studio professionale",
     "prompt commercialisti",
+    "consulenti fiscali e d'impresa",
     "automazione studio contabile",
   ],
   alternates: {
     canonical: "/",
-    types: { "application/rss+xml": [{ url: "/feed.xml", title: `${siteConfig.name} — Blog` }] },
+    types: { "application/rss+xml": [{ url: "/feed.xml", title: `${siteConfig.name} — Articoli` }] },
   },
   openGraph: {
     type: "website",

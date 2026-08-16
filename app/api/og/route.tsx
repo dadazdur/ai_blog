@@ -30,7 +30,7 @@ export async function GET(request: Request) {
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ display: "flex", fontSize: 27, color: "#161514", letterSpacing: "-0.02em", fontWeight: 600 }}>
-            Studio Aumentato
+            Le Scritture
           </div>
           {kicker ? (
             <div style={{ display: "flex", fontSize: 21, color: "#7b1e2e" }}>{kicker}</div>
@@ -62,8 +62,8 @@ export async function GET(request: Request) {
             color: "#55534e",
           }}
         >
-          <span>{meta ?? "Intelligenza artificiale per commercialisti"}</span>
-          <span>studioaumentato.it</span>
+          <span>{meta ?? "Intelligenza artificiale per consulenti fiscali e d'impresa"}</span>
+          <span>lescritture.it</span>
         </div>
       </div>
     ),

@@ -1,6 +1,6 @@
-# Studio Aumentato
+# Le Scritture
 
-Sito editoriale sull'intelligenza artificiale per commercialisti: blog ottimizzato per la ricerca organica,
+Sito editoriale sull'intelligenza artificiale per consulenti fiscali e d'impresa: blog ottimizzato per la ricerca organica,
 area riservata con risorse scaricabili e pannello di amministrazione per gestire tutto senza toccare il codice.
 
 **Stack:** Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · Supabase (Postgres + Auth + Storage) · deploy su Vercel.
