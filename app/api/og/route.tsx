@@ -63,7 +63,7 @@ export async function GET(request: Request) {
           }}
         >
           <span>{meta ?? "Intelligenza artificiale per consulenti fiscali e d'impresa"}</span>
-          <span>lescritture.it</span>
+          <span>lescritture.com</span>
         </div>
       </div>
     ),

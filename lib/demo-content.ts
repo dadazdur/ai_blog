@@ -20,7 +20,7 @@ export const demoAuthors: Author[] = [
     bio: "Porta modelli linguistici dentro il lavoro quotidiano di studio: revisione bilanci, ricerca normativa, gestione della corrispondenza con i clienti. Su Le Scritture racconta solo quello che ha testato in prima persona, compresi gli errori.",
     avatar_url: null,
     linkedin_url: "https://www.linkedin.com/in/andrea-durante",
-    email: "andrea@lescritture.it",
+    email: "andrea@lescritture.com",
   },
 ];
 

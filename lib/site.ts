@@ -35,7 +35,7 @@ export const siteConfig = {
   url: readSiteUrl(),
   locale: "it_IT",
   lang: "it",
-  email: "redazione@lescritture.it",
+  email: "redazione@lescritture.com",
   linkedin: "https://www.linkedin.com/company/le-scritture",
   nav: [
     { label: "Articoli", href: "/blog" },
