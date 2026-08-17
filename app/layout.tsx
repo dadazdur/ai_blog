@@ -3,6 +3,8 @@ import { Archivo, Chivo_Mono, Literata } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
+import { CookieBanner } from "@/components/consent";
+import { Analytics } from "@/components/analytics";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 import { isProductionDeploy, siteConfig } from "@/lib/site";
 import "./globals.css";
@@ -121,6 +123,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <SiteFooter />
+        <CookieBanner />
+        <Analytics />
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </body>
     </html>

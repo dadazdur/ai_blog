@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui";
+import { CookiePreferences } from "@/components/consent";
 import { siteConfig } from "@/lib/site";
 
 const columns = [
@@ -51,6 +52,11 @@ export function SiteFooter() {
                   </Link>
                 </li>
               ))}
+              {column.title === "Legale" ? (
+                <li>
+                  <CookiePreferences />
+                </li>
+              ) : null}
             </ul>
           </nav>
         ))}

@@ -31,7 +31,7 @@ export default function PrivacyPage() {
         </p>
 
         <h2>Quali dati raccogliamo</h2>
-        <p>Il sito tratta esclusivamente i dati che ci fornisci tu, in tre situazioni distinte.</p>
+        <p>Il sito tratta i dati che ci fornisci tu, in quattro situazioni distinte.</p>
         <ul>
           <li>
             <strong>Iscrizione alla newsletter</strong>: indirizzo email, data di iscrizione, data di conferma e
@@ -46,10 +46,16 @@ export default function PrivacyPage() {
             <strong>Utilizzo dell&apos;area riservata</strong>: registro dei file scaricati, per capire quale
             materiale è utile e mantenerlo aggiornato.
           </li>
+          <li>
+            <strong>Misurazione dell&apos;uso del sito</strong>, solo se hai acconsentito: pagine viste,
+            provenienza, tipo di dispositivo e registrazione aggregata dell&apos;interazione con la pagina
+            (scorrimento, clic, punto in cui la lettura si interrompe), tramite Microsoft Clarity. L&apos;area
+            riservata e il pannello di amministrazione sono esclusi dalla misurazione.
+          </li>
         </ul>
         <p>
           Non usiamo strumenti di profilazione pubblicitaria e non arricchiamo i tuoi dati con informazioni
-          provenienti da fonti esterne.
+          provenienti da fonti esterne. Senza il tuo consenso nessuno script di misurazione viene caricato.
         </p>
 
         <h2>Perché li trattiamo e su quale base</h2>
@@ -74,6 +80,11 @@ export default function PrivacyPage() {
                 <td>Fino alla cancellazione dell&apos;account</td>
               </tr>
               <tr>
+                <td>Misurazione dell&apos;uso del sito (Microsoft Clarity)</td>
+                <td>Consenso (art. 6.1.a GDPR)</td>
+                <td>Fino a 12 mesi, o fino alla revoca</td>
+              </tr>
+              <tr>
                 <td>Sicurezza e prevenzione degli abusi</td>
                 <td>Legittimo interesse (art. 6.1.f GDPR)</td>
                 <td>12 mesi</td>
@@ -90,6 +101,7 @@ export default function PrivacyPage() {
           <li>[fornitore dell&apos;infrastruttura di hosting] — erogazione del sito</li>
           <li>[fornitore del database e dell&apos;autenticazione] — conservazione degli account e dei file</li>
           <li>[fornitore del servizio di invio email] — recapito delle email di conferma e della newsletter</li>
+          <li>Microsoft (Microsoft Clarity) — misurazione dell&apos;uso del sito, solo previo consenso</li>
         </ul>
         <p>
           Non cediamo né vendiamo i dati a terzi. Se un fornitore tratta dati fuori dallo Spazio economico
@@ -101,7 +113,8 @@ export default function PrivacyPage() {
         <p>
           Puoi chiedere in qualsiasi momento accesso, rettifica, cancellazione, limitazione e portabilità dei dati,
           e opporti al trattamento fondato sul legittimo interesse. Per la newsletter, la revoca del consenso è
-          immediata dal link presente in fondo a ogni email.
+          immediata dal link presente in fondo a ogni email; per la misurazione, dal pulsante «Preferenze cookie»
+          presente in fondo a ogni pagina e nella <a href="/cookie-policy">cookie policy</a>.
         </p>
         <p>
           Le richieste vanno inviate a <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>. Se ritieni che
