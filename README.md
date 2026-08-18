@@ -108,7 +108,7 @@ la modifica di `lib/email.ts`) il flusso diventa automatico.
 ## Deploy su Vercel
 
 Progetto: **ai-blog** (team *Andrea's projects*), collegato al repository.
-Produzione: <https://www.lescritture.com> (l'apex reindirizza al `www`).
+Produzione: <https://lescritture.com> (il `www` reindirizza all'apex).
 
 ### Variabili d'ambiente
 
@@ -124,7 +124,7 @@ contenuti dimostrativi: niente newsletter, niente registrazione, niente area ris
 | `RESEND_API_KEY` | Production | facoltativa: senza, le email non partono |
 
 `NEXT_PUBLIC_SITE_URL` **non serve più**: in produzione `lib/site.ts` usa `PRODUCTION_URL`, cioè
-`https://www.lescritture.com`. La variabile resta come scavalco, utile solo per uno staging su un altro
+`https://lescritture.com`. La variabile resta come scavalco, utile solo per uno staging su un altro
 dominio. Prima si ricadeva su `VERCEL_PROJECT_PRODUCTION_URL`, che resta l'indirizzo `*.vercel.app` se il
 dominio viene collegato dopo la build: canonical, sitemap e link di conferma finivano tutti lì.
 
@@ -132,8 +132,8 @@ dominio viene collegato dopo la build: canonical, sitemap e link di conferma fin
 
 Istruzioni complete in `supabase/email-templates/README.md`. In sintesi, *Authentication → URL Configuration*:
 
-- Site URL: `https://www.lescritture.com`
-- Redirect URLs: `https://www.lescritture.com/**` e `http://localhost:3000/**`
+- Site URL: `https://lescritture.com`
+- Redirect URLs: `https://lescritture.com/**`, `https://www.lescritture.com/**` e `http://localhost:3000/**`
 
 Il codice chiede già di tornare su `/auth/callback` col dominio giusto, ma Supabase onora quella richiesta
 solo se l'indirizzo è in questa lista.
@@ -144,7 +144,7 @@ Solo il dominio di produzione entra nell'indice. Sulle anteprime `robots.txt` ri
 pagina porta `noindex, nofollow`, così le anteprime non competono con il sito vero sulle stesse parole.
 Il comportamento è deciso da `VERCEL_ENV`, che Vercel imposta da sé.
 
-Il dominio è collegato e il certificato è valido. Resta da inviare `https://www.lescritture.com/sitemap.xml`
+Il dominio è collegato e il certificato è valido. Resta da inviare `https://lescritture.com/sitemap.xml`
 a Google Search Console, dopo il primo deploy che porta online il dominio corretto nei canonical.
 
 ## Note

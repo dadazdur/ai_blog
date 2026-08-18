@@ -9,9 +9,10 @@ reimpostazione della password, cambio indirizzo. La newsletter è un'altra cosa 
 *Authentication → URL Configuration*. Senza questi due campi il link nell'email riporta al
 posto sbagliato, ed è la ragione per cui prima finiva su `ai-blog-…vercel.app`.
 
-- **Site URL**: `https://www.lescritture.com`
+- **Site URL**: `https://lescritture.com`
 - **Redirect URLs**, uno per riga:
-  - `https://www.lescritture.com/**`
+  - `https://lescritture.com/**`
+  - `https://www.lescritture.com/**` *(rete di sicurezza: il `www` reindirizza all'apex, ma i link vecchi ci passano)*
   - `http://localhost:3000/**`
   - `https://ai-blog-*-andreas-projects-df4599ea.vercel.app/**` *(solo se vuoi provare le anteprime)*
 
@@ -72,5 +73,5 @@ quello predefinito è calibrato sul servizio di sviluppo.
 
 1. Registra un indirizzo vero su `/registrati`
 2. L'email deve arrivare con la grafica del sito
-3. Il link deve puntare a `https://www.lescritture.com/auth/callback?...`
+3. Il link deve puntare a `https://lescritture.com/auth/callback?...`
 4. Cliccandolo si atterra nell'area riservata, con la sessione attiva

@@ -6,8 +6,9 @@
  * i motori e gli iscritti su un indirizzo diverso da quello del progetto.
  */
 
-/** Il dominio pubblico. In produzione vince su qualunque indirizzo tecnico di Vercel. */
-export const PRODUCTION_URL = "https://www.lescritture.com";
+/** Il dominio pubblico: l'apex, che su Vercel è il principale (il `www` gli reindirizza).
+ *  In produzione vince su qualunque indirizzo tecnico di Vercel. */
+export const PRODUCTION_URL = "https://lescritture.com";
 
 function readSiteUrl() {
   // 1. Una variabile esplicita batte tutto: serve per staging o cambi di dominio.
