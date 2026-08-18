@@ -144,6 +144,15 @@ Solo il dominio di produzione entra nell'indice. Sulle anteprime `robots.txt` ri
 pagina porta `noindex, nofollow`, così le anteprime non competono con il sito vero sulle stesse parole.
 Il comportamento è deciso da `VERCEL_ENV`, che Vercel imposta da sé.
 
+`proxy.ts` sposta con un 308 chi arriva sull'alias `*.vercel.app` del deploy di produzione, percorso e
+query intatti: l'alias resta raggiungibile ma non è più un secondo indirizzo indicizzabile, e i link delle
+email atterrano sul dominio vero anche se il Site URL di Supabase è impostato male. Le anteprime
+(`VERCEL_ENV="preview"`) non sono toccate.
+
+Sempre in `proxy.ts`: un `?code=` che arriva su un percorso qualsiasi viene riportato a `/auth/callback`
+con `next=/area-riservata`. Serve quando Supabase scarta l'indirizzo di ritorno richiesto e recapita il
+codice sulla radice, dove altrimenti andrebbe perso e l'iscritto resterebbe in home senza sessione.
+
 Il dominio è collegato e il certificato è valido. Resta da inviare `https://lescritture.com/sitemap.xml`
 a Google Search Console, dopo il primo deploy che porta online il dominio corretto nei canonical.
 

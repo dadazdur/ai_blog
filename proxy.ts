@@ -6,7 +6,38 @@ const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
 
 const PROTECTED = ["/area-riservata", "/admin"];
 
+/** L'unico host su cui il sito deve essere visto in produzione. */
+const HOST_CANONICO = "lescritture.com";
+
 export default async function proxy(request: NextRequest) {
+  // Il deploy di produzione risponde anche sull'alias *.vercel.app. Chi ci arriva
+  // — perché un link di Supabase ce l'ha mandato, o perché l'indirizzo gira — deve
+  // vedere il dominio vero: qui viene spostato, con percorso e query intatti. Le
+  // anteprime hanno VERCEL_ENV="preview" e restano raggiungibili dove sono.
+  const host = request.headers.get("host") ?? "";
+  if (process.env.VERCEL_ENV === "production" && host.endsWith(".vercel.app")) {
+    const url = request.nextUrl.clone();
+    url.protocol = "https";
+    url.host = HOST_CANONICO;
+    url.port = "";
+    return NextResponse.redirect(url, 308);
+  }
+
+  // Rete di sicurezza per i link delle email. Supabase onora l'indirizzo di ritorno
+  // chiesto dal codice solo se compare tra i Redirect URL del pannello: altrimenti
+  // ricade sul Site URL e recapita il `code` sulla radice, dove nessuno lo raccoglie
+  // e l'iscritto resta in home senza sessione. Qui il codice viene riportato al
+  // callback, che lo scambia e atterra nell'area riservata.
+  const codiceDiAccesso = request.nextUrl.searchParams.get("code");
+  if (codiceDiAccesso && request.nextUrl.pathname !== "/auth/callback") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/auth/callback";
+    url.search = "";
+    url.searchParams.set("code", codiceDiAccesso);
+    url.searchParams.set("next", request.nextUrl.searchParams.get("next") ?? "/area-riservata");
+    return NextResponse.redirect(url);
+  }
+
   let response = NextResponse.next({ request });
 
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return response;
