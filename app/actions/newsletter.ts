@@ -75,8 +75,11 @@ export async function confirmSubscription(token: string) {
   const { data, error } = await supabase.rpc("confirm_newsletter", { p_token: token });
   if (error || !data) return { ok: false as const, email: null };
 
-  const { subject, html, text } = welcomeEmail(absoluteUrl("/risorse"));
-  await sendEmail({ to: data as string, subject, html, text });
+  // Il token serve al link di disiscrizione e all'intestazione List-Unsubscribe,
+  // che è ciò che tiene le email fuori dalla posta indesiderata.
+  const unsubscribeUrl = absoluteUrl(`/newsletter/disiscriviti?token=${token}`);
+  const { subject, html, text, headers } = welcomeEmail(absoluteUrl("/risorse"), unsubscribeUrl);
+  await sendEmail({ to: data as string, subject, html, text, headers });
 
   return { ok: true as const, email: data as string };
 }

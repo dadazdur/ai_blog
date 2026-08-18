@@ -87,6 +87,18 @@ Ogni salvataggio rigenera le pagine pubbliche interessate (articolo, indice, cat
 
 ## Email
 
+Due sistemi distinti, che è utile non confondere:
+
+| Chi la manda | Quali email | Dove si modifica |
+| --- | --- | --- |
+| **Il sito**, via Resend | conferma iscrizione newsletter, benvenuto | `lib/email.ts` |
+| **Supabase** | conferma registrazione, reimposta password, cambio indirizzo | dashboard Supabase — vedi `supabase/email-templates/` |
+
+I template Supabase, già impaginati con la grafica del sito, stanno in
+`supabase/email-templates/` insieme alle istruzioni per incollarli e alle impostazioni di
+Site URL e Redirect URL. **Quelle impostazioni sono ciò che decide dove porta il link di
+conferma**: se restano sul dominio tecnico di Vercel, l'iscritto ci finisce sopra.
+
 Il double opt-in è completo a livello di dati: iscrizione → stato `pending` → link con token → stato `confirmed`.
 
 Senza `RESEND_API_KEY` le email non partono: il link di conferma viene scritto nei log del server e puoi confermare
@@ -95,8 +107,8 @@ la modifica di `lib/email.ts`) il flusso diventa automatico.
 
 ## Deploy su Vercel
 
-Progetto: **ai-blog** (team *Andrea's projects*), collegato al repository. Produzione:
-<https://ai-blog-kappa-lake.vercel.app>.
+Progetto: **ai-blog** (team *Andrea's projects*), collegato al repository.
+Produzione: <https://www.lescritture.com> (l'apex reindirizza al `www`).
 
 ### Variabili d'ambiente
 
@@ -108,21 +120,23 @@ contenuti dimostrativi: niente newsletter, niente registrazione, niente area ris
 | `NEXT_PUBLIC_SUPABASE_URL` | Production, Preview, Development | `https://fpiheqzelhylvblyxeoy.supabase.co` |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Production, Preview, Development | chiave `anon` da Supabase → API Keys |
 | `SUPABASE_SERVICE_ROLE_KEY` | Production, Preview | marcala **Sensitive**; mai in una variabile `NEXT_PUBLIC_` |
-| `NEXT_PUBLIC_SITE_URL` | Production | **solo** quando avrai il dominio definitivo |
+| `NEXT_PUBLIC_SITE_URL` | — | non serve: in produzione il dominio è già nel codice |
 | `RESEND_API_KEY` | Production | facoltativa: senza, le email non partono |
 
-`NEXT_PUBLIC_SITE_URL` non è obbligatoria su Vercel: se manca, il sito usa il dominio che Vercel espone
-da sé (`VERCEL_PROJECT_PRODUCTION_URL`). Impostala solo per puntare al dominio definitivo — un valore
-sbagliato è peggio di nessun valore, perché il canonical manderebbe i motori su un dominio che non esiste.
+`NEXT_PUBLIC_SITE_URL` **non serve più**: in produzione `lib/site.ts` usa `PRODUCTION_URL`, cioè
+`https://www.lescritture.com`. La variabile resta come scavalco, utile solo per uno staging su un altro
+dominio. Prima si ricadeva su `VERCEL_PROJECT_PRODUCTION_URL`, che resta l'indirizzo `*.vercel.app` se il
+dominio viene collegato dopo la build: canonical, sitemap e link di conferma finivano tutti lì.
 
-### Redirect URL su Supabase
+### Redirect URL e email su Supabase
 
-*Authentication → URL Configuration*. Senza questo passaggio i link di conferma registrazione e di
-recupero password non riportano al sito:
+Istruzioni complete in `supabase/email-templates/README.md`. In sintesi, *Authentication → URL Configuration*:
 
-- Site URL: `https://ai-blog-kappa-lake.vercel.app`
-- Redirect URLs: `https://ai-blog-kappa-lake.vercel.app/auth/callback`, `http://localhost:3000/auth/callback`
-  e, con il carattere jolly per le anteprime, `https://ai-blog-*-andreas-projects-df4599ea.vercel.app/auth/callback`
+- Site URL: `https://www.lescritture.com`
+- Redirect URLs: `https://www.lescritture.com/**` e `http://localhost:3000/**`
+
+Il codice chiede già di tornare su `/auth/callback` col dominio giusto, ma Supabase onora quella richiesta
+solo se l'indirizzo è in questa lista.
 
 ### Indicizzazione
 
@@ -130,8 +144,8 @@ Solo il dominio di produzione entra nell'indice. Sulle anteprime `robots.txt` ri
 pagina porta `noindex, nofollow`, così le anteprime non competono con il sito vero sulle stesse parole.
 Il comportamento è deciso da `VERCEL_ENV`, che Vercel imposta da sé.
 
-Quando il dominio definitivo sarà attivo: collegalo su Vercel, aggiorna `NEXT_PUBLIC_SITE_URL` e i Redirect
-URL su Supabase, poi invia `https://iltuodominio.it/sitemap.xml` a Google Search Console.
+Il dominio è collegato e il certificato è valido. Resta da inviare `https://www.lescritture.com/sitemap.xml`
+a Google Search Console, dopo il primo deploy che porta online il dominio corretto nei canonical.
 
 ## Note
 
