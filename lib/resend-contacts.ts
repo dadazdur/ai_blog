@@ -71,10 +71,16 @@ export async function sincronizzaContatto(dati: DatiContatto): Promise<EsitoCont
       email,
       ...nome,
       unsubscribed,
-      ...(segmento() ? { segments: [segmento()] } : {}),
+      // L'API vuole oggetti, non stringhe: un array di id fa fallire tutto con un 422.
+      ...(segmento() ? { segments: [{ id: segmento() }] } : {}),
       ...(properties ? { properties } : {}),
     });
     if (creazione.ok) return { ok: true };
+
+    // Va conservato: se anche il ripiego fallisce, il suo errore da solo sarebbe
+    // fuorviante — un «contatto inesistente» che nasconde il vero motivo per cui
+    // non è stato creato.
+    const erroreCreazione = `${creazione.status} ${await creazione.text()}`;
 
     // Esiste già: PATCH accetta l'email come chiave. I campi assenti non vengono
     // toccati, quindi una disiscrizione non cancella il nome raccolto prima.
@@ -86,7 +92,8 @@ export async function sincronizzaContatto(dati: DatiContatto): Promise<EsitoCont
     if (aggiornamento.ok) return { ok: true };
 
     console.error(
-      `[resend] contatto non sincronizzato (${aggiornamento.status}): ${await aggiornamento.text()}`,
+      `[resend] contatto non sincronizzato — creazione: ${erroreCreazione} · ` +
+        `aggiornamento: ${aggiornamento.status} ${await aggiornamento.text()}`,
     );
     return { ok: false, motivo: "richiesta-rifiutata" };
   } catch (errore) {

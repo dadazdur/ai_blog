@@ -119,6 +119,17 @@ La regola che il codice non viola mai: **una disiscrizione non viene mai annulla
 `subscribe_account_holder` promuove i `pending` ma lascia intatti gli `unsubscribed`, quindi né un nuovo
 accesso né un rilancio dello script rimettono in lista chi se n'è andato.
 
+**Due cose vanno esistere in Resend prima**, altrimenti la creazione di un contatto risponde 422 e in
+lista non arriva nessuno:
+
+- le proprietà personalizzate `origine` e `studio` (*Audience → Properties*), che il sito valorizza su
+  ogni contatto;
+- il segmento a cui puntare con `RESEND_SEGMENT_ID`, perché **le broadcast si spediscono a un segmento**:
+  non esiste un «tutti i contatti». Senza quella variabile i contatti nascono fuori da ogni segmento e
+  non li raggiunge nessuna newsletter.
+
+Nel payload `segments` vuole oggetti (`[{ id }]`), non stringhe: un array di id fallisce con un 422.
+
 Se Resend è irraggiungibile nessun flusso si interrompe: l'errore finisce nei log e il disallineamento si
 recupera con
 
