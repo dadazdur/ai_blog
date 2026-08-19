@@ -105,7 +105,9 @@ export function SignUpForm() {
           <Link href="/privacy" className="link">
             privacy policy
           </Link>{" "}
-          e acconsento al trattamento dei dati per l&apos;accesso all&apos;area riservata.
+          e acconsento al trattamento dei dati per l&apos;accesso all&apos;area riservata e per ricevere le
+          guide via email: ti scriviamo quando esce qualcosa che vale il tuo tempo, mai più di una volta
+          a settimana, e la disiscrizione è a un clic in fondo a ogni email.
         </span>
       </label>
 

@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { absoluteUrl } from "@/lib/site";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { iscriviTitolareAccount } from "@/lib/newsletter-sync";
 import type { AuthState } from "@/lib/form-state";
 
 const NOT_CONFIGURED: AuthState = {
@@ -73,8 +74,10 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
 
   if (error) return { status: "error", message: friendlyError(error.message) };
 
-  // Se la conferma via email è disattivata su Supabase, la sessione è già attiva.
+  // Se la conferma via email è disattivata su Supabase, la sessione è già attiva
+  // e il passaggio dal callback non avviene: la newsletter si aggiorna qui.
   if (data.session) {
+    await iscriviTitolareAccount({ email, nome: fullName, studio });
     revalidatePath("/", "layout");
     redirect("/area-riservata");
   }

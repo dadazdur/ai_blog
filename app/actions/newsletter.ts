@@ -3,6 +3,7 @@
 import { createAdminClient } from "@/lib/supabase/server";
 import { newsletterConfirmationEmail, sendEmail, welcomeEmail } from "@/lib/email";
 import { absoluteUrl } from "@/lib/site";
+import { disiscriviContatto, sincronizzaContatto } from "@/lib/resend-contacts";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import type { NewsletterState } from "@/lib/form-state";
 
@@ -81,6 +82,10 @@ export async function confirmSubscription(token: string) {
   const { subject, html, text, headers } = welcomeEmail(absoluteUrl("/risorse"), unsubscribeUrl);
   await sendEmail({ to: data as string, subject, html, text, headers });
 
+  // Da qui in poi la persona è nella lista di spedizione di Resend, da cui
+  // partono le newsletter vere e proprie.
+  await sincronizzaContatto({ email: data as string, origine: "sito" });
+
   return { ok: true as const, email: data as string };
 }
 
@@ -90,5 +95,10 @@ export async function unsubscribe(token: string) {
 
   const { data, error } = await supabase.rpc("unsubscribe_newsletter", { p_token: token });
   if (error || !data) return { ok: false as const, email: null };
+
+  // Senza questo passaggio il database direbbe «disiscritto» e Resend
+  // continuerebbe a spedire: è la copia operativa a dover essere aggiornata.
+  await disiscriviContatto(data as string);
+
   return { ok: true as const, email: data as string };
 }

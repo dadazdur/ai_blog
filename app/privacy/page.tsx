@@ -40,7 +40,9 @@ export default function PrivacyPage() {
           <li>
             <strong>Registrazione all&apos;area riservata</strong>: nome e cognome, indirizzo email, nome dello
             studio (facoltativo), password conservata in forma cifrata dal fornitore del servizio di
-            autenticazione.
+            autenticazione. Creando un account vieni iscritto anche alla newsletter, come indicato nel
+            modulo di registrazione: puoi disiscriverti con un clic in fondo a ogni email, senza che
+            questo tocchi il tuo accesso all&apos;area riservata.
           </li>
           <li>
             <strong>Utilizzo dell&apos;area riservata</strong>: registro dei file scaricati, per capire quale
@@ -100,7 +102,10 @@ export default function PrivacyPage() {
         <ul>
           <li>[fornitore dell&apos;infrastruttura di hosting] — erogazione del sito</li>
           <li>[fornitore del database e dell&apos;autenticazione] — conservazione degli account e dei file</li>
-          <li>[fornitore del servizio di invio email] — recapito delle email di conferma e della newsletter</li>
+          <li>
+            Resend (Resend, Inc.) — recapito delle email di conferma e della newsletter, e gestione della
+            lista dei destinatari
+          </li>
           <li>Microsoft (Microsoft Clarity) — misurazione dell&apos;uso del sito, solo previo consenso</li>
         </ul>
         <p>

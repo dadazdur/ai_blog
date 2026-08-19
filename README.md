@@ -101,6 +101,34 @@ conferma**: se restano sul dominio tecnico di Vercel, l'iscritto ci finisce sopr
 
 Il double opt-in è completo a livello di dati: iscrizione → stato `pending` → link con token → stato `confirmed`.
 
+### La lista di spedizione
+
+Il database resta la verità sul consenso: ha gli stati, i token e le date che il pannello admin mostra.
+Resend tiene la copia operativa — i **contatti** da cui partono le newsletter, che si compongono dalla sua
+dashboard. I due lati si allineano da soli in tre momenti:
+
+| Quando | Cosa succede in Resend |
+| --- | --- |
+| un iscritto conferma dal link | il contatto viene creato attivo |
+| qualcuno si disiscrive | il contatto viene marcato `unsubscribed` |
+| un account conferma l'indirizzo | il titolare entra in lista con proprietà `origine: account` |
+
+**Chi apre un account è iscritto alla newsletter.** Non serve un secondo opt-in perché la casella è già
+dimostrata dalla conferma dell'account, e il modulo di registrazione lo dice prima di creare l'account.
+La regola che il codice non viola mai: **una disiscrizione non viene mai annullata**. La funzione SQL
+`subscribe_account_holder` promuove i `pending` ma lascia intatti gli `unsubscribed`, quindi né un nuovo
+accesso né un rilancio dello script rimettono in lista chi se n'è andato.
+
+Se Resend è irraggiungibile nessun flusso si interrompe: l'errore finisce nei log e il disallineamento si
+recupera con
+
+```bash
+npm run newsletter:sync
+```
+
+che iscrive gli account già esistenti e riversa in Resend tutti gli iscritti. È idempotente e non tocca
+i `pending`, che in una lista di spedizione non devono ancora comparire.
+
 Senza `RESEND_API_KEY` le email non partono: il link di conferma viene scritto nei log del server e puoi confermare
 gli iscritti a mano da `/admin/iscritti`. Appena colleghi un provider (Resend è già integrato, altri richiedono solo
 la modifica di `lib/email.ts`) il flusso diventa automatico.
@@ -121,7 +149,8 @@ contenuti dimostrativi: niente newsletter, niente registrazione, niente area ris
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Production, Preview, Development | chiave `anon` da Supabase → API Keys |
 | `SUPABASE_SERVICE_ROLE_KEY` | Production, Preview | marcala **Sensitive**; mai in una variabile `NEXT_PUBLIC_` |
 | `NEXT_PUBLIC_SITE_URL` | — | non serve: in produzione il dominio è già nel codice |
-| `RESEND_API_KEY` | Production | facoltativa: senza, le email non partono |
+| `RESEND_API_KEY` | Production | **serve**: senza, le email non partono e i contatti non arrivano in lista |
+| `RESEND_SEGMENT_ID` | Production | facoltativa: raduna gli iscritti in un segmento Resend |
 
 `NEXT_PUBLIC_SITE_URL` **non serve più**: in produzione `lib/site.ts` usa `PRODUCTION_URL`, cioè
 `https://lescritture.com`. La variabile resta come scavalco, utile solo per uno staging su un altro

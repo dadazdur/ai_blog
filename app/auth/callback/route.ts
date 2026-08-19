@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { iscriviTitolareAccount } from "@/lib/newsletter-sync";
 
 /**
  * Punto di atterraggio dei link inviati via email da Supabase
@@ -13,8 +14,20 @@ export async function GET(request: NextRequest) {
   if (code) {
     const supabase = await createClient();
     if (supabase) {
-      const { error } = await supabase.auth.exchangeCodeForSession(code);
-      if (!error) return NextResponse.redirect(`${origin}${next}`);
+      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+      if (!error) {
+        // L'indirizzo è appena stato dimostrato: è il momento giusto per
+        // metterlo in newsletter. Non blocca l'atterraggio se Resend è giù.
+        const utente = data?.user;
+        if (utente?.email) {
+          await iscriviTitolareAccount({
+            email: utente.email,
+            nome: utente.user_metadata?.full_name ?? null,
+            studio: utente.user_metadata?.studio ?? null,
+          });
+        }
+        return NextResponse.redirect(`${origin}${next}`);
+      }
     }
   }
 
