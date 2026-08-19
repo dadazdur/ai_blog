@@ -1,0 +1,132 @@
+<!doctype html>
+<!--
+  ===================================================================
+  LE SCRITTURE — modello per le newsletter (Resend → Broadcasts)
+
+  Come si usa:
+  1. Resend → Broadcasts → New broadcast
+  2. Segmento: General · Mittente: Le Scritture <redazione@lescritture.com>
+  3. Passa l'editor in modalità HTML e incolla tutto questo file
+  4. Cambia solo i punti marcati «DA CAMBIARE» e duplica i blocchi articolo
+
+  Non togliere {{{RESEND_UNSUBSCRIBE_URL}}} in fondo: senza il link di
+  disiscrizione la newsletter è illegittima e finisce nella posta indesiderata.
+  ===================================================================
+-->
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>Le Scritture</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f5f5f3;-webkit-font-smoothing:antialiased">
+
+<!-- DA CAMBIARE — anteprima: la riga che si legge accanto all'oggetto nella casella.
+     È la seconda cosa che decide se aprono. Non ripetere l'oggetto: aggiungi. -->
+<div style="display:none;font-size:1px;color:#f5f5f3;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden">
+  Una riga che aggiunge qualcosa all'oggetto, non che lo ripete.
+</div>
+
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f3">
+<tr>
+<td align="center" style="padding-top:32px;padding-bottom:32px;padding-left:16px;padding-right:16px">
+
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:560px;background-color:#ffffff;border:1px solid #e2e1dd">
+
+  <!-- ============ TESTATA ============ -->
+  <tr>
+  <td style="padding-top:26px;padding-right:32px;padding-left:32px">
+    <div style="font-family:Georgia,'Times New Roman',Times,serif;font-size:20px;font-weight:bold;letter-spacing:-0.3px;color:#161514">Le Scritture</div>
+    <!-- DA CAMBIARE — la data di questo numero -->
+    <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.5;color:#6e6b65;padding-top:5px">
+      19 agosto 2026
+    </div>
+  </td>
+  </tr>
+
+  <tr><td style="padding-top:18px;padding-right:32px;padding-left:32px"><div style="height:1px;background-color:#e2e1dd;line-height:1px;font-size:0">&nbsp;</div></td></tr>
+
+  <!-- ============ APERTURA ============ -->
+  <!-- DA CAMBIARE — due o tre frasi. Dì subito di cosa si parla e perché
+       riguarda chi legge. Niente «in questo numero troverai»: entra nel merito. -->
+  <tr>
+  <td style="padding-top:26px;padding-right:32px;padding-left:32px;font-family:Georgia,'Times New Roman',Times,serif;font-size:16px;line-height:1.65;color:#161514">
+    <p style="margin-top:0;margin-bottom:0">
+      L'apertura del numero: il fatto, il problema di studio o la domanda da cui parte tutto.
+      Poche righe, scritte come le diresti a un collega.
+    </p>
+  </td>
+  </tr>
+
+  <tr><td style="padding-top:26px;padding-right:32px;padding-left:32px"><div style="height:1px;background-color:#e2e1dd;line-height:1px;font-size:0">&nbsp;</div></td></tr>
+
+  <!-- ============ ARTICOLO — duplica da qui al filetto per ogni pezzo ============ -->
+  <tr>
+  <td style="padding-top:24px;padding-right:32px;padding-left:32px">
+    <!-- DA CAMBIARE — titolo e indirizzo -->
+    <h2 style="margin-top:0;margin-bottom:0;font-family:Georgia,'Times New Roman',Times,serif;font-size:21px;line-height:1.3;font-weight:bold;letter-spacing:-0.2px;color:#161514">
+      <a href="https://lescritture.com/blog/lo-slug-dell-articolo" style="color:#161514;text-decoration:none">Il titolo dell'articolo, per esteso</a>
+    </h2>
+    <!-- DA CAMBIARE — categoria e minuti di lettura -->
+    <p style="margin-top:7px;margin-bottom:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.5;color:#6e6b65">
+      Casi d'uso &middot; 6 min di lettura
+    </p>
+    <!-- DA CAMBIARE — due o tre righe: cosa si porta a casa chi legge -->
+    <p style="margin-top:11px;margin-bottom:0;font-family:Georgia,'Times New Roman',Times,serif;font-size:16px;line-height:1.65;color:#55534e">
+      Il sommario: che cosa risolve questo pezzo e in quanto tempo. Se c'è una cosa che non ha
+      funzionato, dillo qui: è la parte che fa cliccare.
+    </p>
+    <p style="margin-top:12px;margin-bottom:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:14px;line-height:1.5">
+      <a href="https://lescritture.com/blog/lo-slug-dell-articolo" style="color:#7b1e2e;font-weight:600;text-decoration:none">Leggi l'articolo &rarr;</a>
+    </p>
+  </td>
+  </tr>
+  <tr><td style="padding-top:24px;padding-right:32px;padding-left:32px"><div style="height:1px;background-color:#e2e1dd;line-height:1px;font-size:0">&nbsp;</div></td></tr>
+  <!-- ============ fine blocco articolo ============ -->
+
+  <!-- ============ CHIUSURA — facoltativa: togli tutta la riga se non serve ============ -->
+  <tr>
+  <td style="padding-top:24px;padding-right:32px;padding-left:32px;font-family:Georgia,'Times New Roman',Times,serif;font-size:16px;line-height:1.65;color:#161514">
+    <p style="margin-top:0;margin-bottom:0">
+      Una riga di congedo, o la domanda a cui ti farebbe comodo una risposta. Le risposte a questa
+      email arrivano davvero a una persona.
+    </p>
+  </td>
+  </tr>
+
+  <!-- ============ PULSANTE — facoltativo: uno solo, o nessuno ============ -->
+  <tr>
+  <td style="padding-top:22px;padding-right:32px;padding-left:32px">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+    <td bgcolor="#7b1e2e" style="border-radius:3px">
+      <!-- DA CAMBIARE — dove porta e come si chiama -->
+      <a href="https://lescritture.com/risorse" style="display:inline-block;padding-top:13px;padding-bottom:13px;padding-left:26px;padding-right:26px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:3px">Vai alle risorse</a>
+    </td>
+    </tr>
+    </table>
+  </td>
+  </tr>
+
+  <!-- ============ PIEDE — non toccare il link di disiscrizione ============ -->
+  <tr><td style="padding-top:28px;padding-right:32px;padding-left:32px"><div style="height:1px;background-color:#e2e1dd;line-height:1px;font-size:0">&nbsp;</div></td></tr>
+  <tr>
+  <td style="padding-top:18px;padding-bottom:26px;padding-right:32px;padding-left:32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:1.6;color:#6e6b65">
+    Ricevi questa email perché ti sei iscritto su lescritture.com o perché hai un account sul sito.
+    <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color:#6e6b65;text-decoration:underline">Disiscriviti con un clic</a>.
+  </td>
+  </tr>
+
+</table>
+
+<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:11px;line-height:1.5;color:#6e6b65;padding-top:16px">lescritture.com</div>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
