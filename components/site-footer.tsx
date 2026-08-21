@@ -9,7 +9,6 @@ const columns = [
     links: [
       { label: "Tutti gli articoli", href: "/blog" },
       { label: "Risorse", href: "/risorse" },
-      { label: "Feed RSS", href: "/feed.xml" },
     ],
   },
   {

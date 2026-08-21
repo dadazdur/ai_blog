@@ -97,10 +97,6 @@ export async function BlogIndex({ page }: { page: number }) {
               </ul>
             </nav>
           ) : null}
-
-          <a href="/feed.xml" className="ui text-[0.88rem] text-ink-2 transition-colors hover:text-accent">
-            Feed RSS
-          </a>
         </aside>
       </Container>
 

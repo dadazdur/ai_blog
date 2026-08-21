@@ -80,7 +80,6 @@ Ogni salvataggio rigenera le pagine pubbliche interessate (articolo, indice, cat
 - `sitemap.xml` dinamica (articoli, categorie, autori, pagine di archivio) e `robots.txt`
 - Dati strutturati: `Organization`, `WebSite`, `BlogPosting`, `Person`, `BreadcrumbList`, `FAQPage`, `CollectionPage`
 - Immagini social generate al volo (`/api/og`), coerenti con l'identità visiva
-- Feed RSS completo su `/feed.xml`
 - Articoli e archivi generati staticamente con rigenerazione incrementale
 - Ancore automatiche sui titoli, indice dei contenuti, breadcrumb navigabili
 - Header di sicurezza e area riservata esclusa dall'indicizzazione

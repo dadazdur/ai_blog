@@ -21,7 +21,6 @@ function revalidatePost(slug?: string | null, categorySlug?: string | null) {
   revalidatePath("/");
   revalidatePath("/blog");
   revalidatePath("/sitemap.xml");
-  revalidatePath("/feed.xml");
   if (slug) revalidatePath(`/blog/${slug}`);
   if (categorySlug) revalidatePath(`/blog/categoria/${categorySlug}`);
 }
