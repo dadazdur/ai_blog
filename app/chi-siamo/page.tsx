@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ButtonLink, Container } from "@/components/ui";
 import { JsonLd } from "@/components/json-ld";
+import { SoloAnonimi } from "@/components/auth-aware";
 import { getAuthors } from "@/lib/data";
 import { breadcrumbSchema, buildMetadata, personSchema } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
@@ -91,9 +92,11 @@ export default async function ChiSiamoPage() {
             </a>
             : i casi reali diventano articoli.
           </p>
-          <ButtonLink href="/registrati" className="mt-7">
-            Crea un account gratuito
-          </ButtonLink>
+          <SoloAnonimi>
+            <ButtonLink href="/registrati" className="mt-7">
+              Crea un account gratuito
+            </ButtonLink>
+          </SoloAnonimi>
         </section>
       </Container>
 

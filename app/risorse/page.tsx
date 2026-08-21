@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/json-ld";
 import { getResourceTeasers } from "@/lib/data";
 import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
 import { resourceTypeLabels } from "@/lib/types";
+import { SoloAnonimi, SoloAutenticati } from "@/components/auth-aware";
 
 export const revalidate = 600;
 
@@ -26,10 +27,15 @@ export default async function RisorsePage() {
           Serve un account gratuito, e nient&apos;altro: nessun costo, nessuna versione ridotta.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <ButtonLink href="/registrati">Crea un account gratuito</ButtonLink>
-          <ButtonLink href="/accedi" variant="outline">
-            Ho già un account
-          </ButtonLink>
+          <SoloAnonimi>
+            <ButtonLink href="/registrati">Crea un account gratuito</ButtonLink>
+            <ButtonLink href="/accedi" variant="outline">
+              Ho già un account
+            </ButtonLink>
+          </SoloAnonimi>
+          <SoloAutenticati>
+            <ButtonLink href="/area-riservata">Vai all&apos;area riservata</ButtonLink>
+          </SoloAutenticati>
         </div>
       </Container>
 

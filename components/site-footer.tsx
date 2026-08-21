@@ -1,9 +1,14 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui";
 import { CookiePreferences } from "@/components/consent";
+import { SoloAnonimi } from "@/components/auth-aware";
 import { siteConfig } from "@/lib/site";
 
-const columns = [
+/** `soloAnonimi`: la voce sparisce a chi è già entrato. */
+type Voce = { label: string; href: string; soloAnonimi?: boolean };
+
+const columns: { title: string; links: Voce[] }[] = [
   {
     title: "Contenuti",
     links: [
@@ -16,7 +21,7 @@ const columns = [
     links: [
       { label: "Chi siamo", href: "/chi-siamo" },
       { label: "Area riservata", href: "/area-riservata" },
-      { label: "Iscriviti", href: "/registrati" },
+      { label: "Iscriviti", href: "/registrati", soloAnonimi: true },
     ],
   },
   {
@@ -44,13 +49,20 @@ export function SiteFooter() {
           <nav key={column.title} aria-label={column.title}>
             <p className="ui text-[0.82rem] font-semibold text-ink">{column.title}</p>
             <ul className="ui mt-3 flex flex-col gap-2">
-              {column.links.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-[0.88rem] text-ink-2 transition-colors hover:text-accent">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {column.links.map((link) => {
+                const voce = (
+                  <li>
+                    <Link href={link.href} className="text-[0.88rem] text-ink-2 transition-colors hover:text-accent">
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+                return link.soloAnonimi ? (
+                  <SoloAnonimi key={link.href}>{voce}</SoloAnonimi>
+                ) : (
+                  <Fragment key={link.href}>{voce}</Fragment>
+                );
+              })}
               {column.title === "Legale" ? (
                 <li>
                   <CookiePreferences />

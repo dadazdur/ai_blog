@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { SoloAnonimi } from "@/components/auth-aware";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { siteConfig } from "@/lib/site";
@@ -54,9 +55,11 @@ export function MobileNav() {
             {item.label}
           </Link>
         ))}
-        <Link href="/registrati" className="ui mt-8 self-start text-[0.95rem] text-accent underline underline-offset-4">
-          Crea un account gratuito
-        </Link>
+        <SoloAnonimi>
+          <Link href="/registrati" className="ui mt-8 self-start text-[0.95rem] text-accent underline underline-offset-4">
+            Crea un account gratuito
+          </Link>
+        </SoloAnonimi>
       </nav>
     </div>
   );
